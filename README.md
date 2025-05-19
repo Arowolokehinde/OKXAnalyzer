@@ -1,4 +1,4 @@
-#  OKC Token Launch Analytics Dashboard
+#  OKXAnalyzer - OKC Token Launch Analytics Dashboard
 
 A powerful analytics platform designed for discovering and evaluating new token launches on the **OKX Chain (OKC)**. This dashboard aggregates real-time data from OKX DEX APIs to help DeFi traders, meme coin hunters, and analytics builders spot opportunities early and make informed trading decisions.
 
