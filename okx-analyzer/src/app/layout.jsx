@@ -2,7 +2,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { WalletProviderWrapper } from '@/context/WalletContext';
-import AnimatedBackground from '../component/animations/AnimatedBackground';
 import Navbar from '../component/layout/Navbar';
 import ToasterProvider from '../providers/ToasterProvider';
 
@@ -23,7 +22,6 @@ export default function RootLayout({ children }) {
       <body className="antialiased">
         <ToasterProvider />
         <WalletProviderWrapper>
-          <AnimatedBackground variant="mixed" />
           <Navbar />
           <main className="relative z-10">
             {children}

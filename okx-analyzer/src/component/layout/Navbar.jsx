@@ -9,6 +9,64 @@ import { useWallet } from '@/context/WalletContext';
 import WalletConnectButton from '../wallet/WalletConnectButton';
 import WalletModal from '../wallet/WalletModal';
 
+// Define animation variants
+const dropdownVariants = {
+  hidden: { opacity: 0, y: -5, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.2 }
+  },
+  exit: { 
+    opacity: 0, 
+    y: -5, 
+    scale: 0.95,
+    transition: { duration: 0.2 }
+  }
+};
+
+const dropdownItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (i) => ({ 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      delay: i * 0.05,
+      duration: 0.2
+    }
+  })
+};
+
+const mobileMenuVariants = {
+  hidden: { height: 0, opacity: 0 },
+  visible: { 
+    height: 'auto', 
+    opacity: 1,
+    transition: { 
+      height: { duration: 0.3 },
+      opacity: { duration: 0.3, delay: 0.1 }
+    }
+  },
+  exit: { 
+    height: 0, 
+    opacity: 0,
+    transition: { 
+      height: { duration: 0.3 },
+      opacity: { duration: 0.2 }
+    }
+  }
+};
+
+const mobileItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.3 }
+  }
+};
+
 const Navbar = () => {
   const { isConnected } = useWallet();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +103,7 @@ const Navbar = () => {
   const navLinks = [
     { 
       name: 'Dashboard', 
-      href: '/',
+      href: '/dashboard',
       isActive: true
     },
     { 
@@ -96,66 +154,6 @@ const Navbar = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Animation variants
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, height: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      height: 'auto', 
-      y: 0,
-      transition: {
-        duration: 0.3,
-        when: "beforeChildren",
-        staggerChildren: 0.1
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      height: 0, 
-      y: -20,
-      transition: {
-        duration: 0.3,
-        when: "afterChildren",
-        staggerChildren: 0.05,
-        staggerDirection: -1
-      }
-    }
-  };
-  
-  const mobileItemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -20 }
-  };
-  
-  const dropdownVariants = {
-    hidden: { opacity: 0, y: -5, height: 0 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      height: 'auto',
-      transition: {
-        duration: 0.2,
-        when: "beforeChildren",
-        staggerChildren: 0.05
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      y: -5, 
-      height: 0,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-  
-  const dropdownItemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -10 }
-  };
-
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -196,43 +194,60 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  <button 
-                    className={`px-4 py-2 rounded-md text-gray-300 hover:text-teal-400 transition-colors font-medium flex items-center ${
-                      link.isActive ? 'text-teal-400' : ''
-                    }`}
-                  >
-                    {link.name}
-                    {link.dropdown && (
+                  {link.dropdown ? (
+                    <button 
+                      className={`px-4 py-2 rounded-md text-gray-300 hover:text-teal-400 transition-colors font-medium flex items-center ${
+                        link.isActive ? 'text-teal-400' : ''
+                      }`}
+                      onMouseEnter={() => link.dropdown && setActiveDropdown(index)}
+                    >
+                      {link.name}
                       <ChevronDown 
                         className={`ml-1 h-4 w-4 transition-transform ${
                           activeDropdown === index ? 'rotate-180' : ''
                         }`} 
                       />
-                    )}
-                  </button>
+                    </button>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className={`px-4 py-2 rounded-md text-gray-300 hover:text-teal-400 transition-colors font-medium flex items-center ${
+                        link.isActive ? 'text-teal-400' : ''
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </motion.div>
                 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu with Enhanced Animation */}
                 {link.dropdown && (
                   <AnimatePresence>
                     {activeDropdown === index && (
                       <motion.div
-                        className="absolute left-0 mt-1 w-56 rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        className="absolute left-0 mt-1 w-56 rounded-md shadow-lg bg-slate-800/90 backdrop-blur-sm ring-1 ring-black ring-opacity-5 focus:outline-none border border-slate-700/50"
                         variants={dropdownVariants}
                         initial="hidden"
                         animate="visible"
                         exit="exit"
                         onClick={(e) => e.stopPropagation()}
+                        onMouseLeave={() => setActiveDropdown(null)}
                       >
                         <div className="py-1">
-                          {link.dropdown.map((item) => (
+                          {link.dropdown.map((item, itemIndex) => (
                             <motion.div
                               key={item.name}
                               variants={dropdownItemVariants}
+                              custom={itemIndex}
+                              whileHover={{ 
+                                x: 5, 
+                                backgroundColor: 'rgba(15, 118, 110, 0.2)',
+                                transition: { duration: 0.2 }
+                              }}
                             >
                               <Link 
                                 href={item.href}
-                                className="block px-4 py-2 text-sm text-gray-300 hover:bg-slate-700 hover:text-white"
+                                className="block px-4 py-2 text-sm text-gray-300 hover:text-teal-400 transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 {item.name}

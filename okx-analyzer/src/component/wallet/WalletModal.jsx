@@ -1,56 +1,12 @@
 // components/wallet/WalletModal.jsx
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, AlertTriangle, Loader2 } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 import { useWallet } from '@/context/WalletContext';
-import NetworkSelector from './NetworkSelector';
 
 const WalletModal = ({ isOpen, onClose }) => {
-  const { 
-    account, 
-    formattedAccount, 
-    networkDetails, 
-    isConnecting, 
-    isConnected, 
-    error, 
-    connect, 
-    disconnect 
-  } = useWallet();
-  
-  const [copied, setCopied] = useState(false);
-  
-  // Automatically close modal when connection is successful
-  useEffect(() => {
-    if (isConnected && !isConnecting) {
-      // Add a small delay for better UX
-      const timer = setTimeout(() => {
-        onClose();
-      }, 500);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [isConnected, isConnecting, onClose]);
-  
-  // Reset copied state after 2 seconds
-  useEffect(() => {
-    if (copied) {
-      const timer = setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [copied]);
-  
-  // Copy address to clipboard
-  const copyAddress = () => {
-    if (account) {
-      navigator.clipboard.writeText(account);
-      setCopied(true);
-    }
-  };
+  const { connect, isConnecting, WALLET_TYPES } = useWallet();
   
   // Animation variants
   const overlayVariants = {
@@ -71,6 +27,28 @@ const WalletModal = ({ isOpen, onClose }) => {
       } 
     },
     exit: { opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.2 } }
+  };
+
+  const walletOptionVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: i => ({ 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        delay: i * 0.1,
+        duration: 0.3
+      } 
+    }),
+    hover: { 
+      scale: 1.03,
+      backgroundColor: 'rgba(15, 118, 110, 0.1)',
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const handleConnect = async (walletType) => {
+    await connect(walletType);
+    onClose();
   };
 
   return (
@@ -105,9 +83,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             >
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-slate-800">
-                <h3 className="text-lg font-medium text-white">
-                  {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
-                </h3>
+                <h3 className="text-lg font-medium text-white">Connect Wallet</h3>
                 <button
                   onClick={onClose}
                   className="rounded-full p-1 text-gray-400 hover:text-white hover:bg-slate-800 transition-colors"
@@ -118,70 +94,66 @@ const WalletModal = ({ isOpen, onClose }) => {
               
               {/* Content */}
               <div className="p-5">
-                {!isConnected ? (
-                  <>
-                    <p className="text-gray-300 mb-4">
-                      Connect your wallet to access the OKX Token Launch Analytics Dashboard.
-                    </p>
-                    
-                    {error && (
-                      <div className="mb-4 p-3 bg-red-900/30 border border-red-600/30 rounded-lg flex items-start">
-                        <AlertTriangle className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <p className="text-sm text-red-300">{error}</p>
+                <p className="text-gray-300 mb-4">
+                  Connect your wallet to access the OKX Token Launch Analytics Dashboard.
+                </p>
+                
+                {/* Wallet options */}
+                <div className="space-y-3">
+                  {/* OKX Wallet */}
+                  <motion.button
+                    className="w-full p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-colors flex items-center justify-between"
+                    onClick={() => handleConnect(WALLET_TYPES.OKX)}
+                    disabled={isConnecting}
+                    variants={walletOptionVariants}
+                    custom={0}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                  >
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 mr-3 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                        <span className="text-white font-bold">OKX</span>
                       </div>
-                    )}
-                    
-                    <button
-                      onClick={connect}
-                      disabled={isConnecting}
-                      className={`w-full bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center transition-colors ${
-                        isConnecting ? 'opacity-70 cursor-not-allowed' : ''
-                      }`}
-                    >
-                      {isConnecting ? (
-                        <>
-                          <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                          Connecting...
-                        </>
-                      ) : (
-                        'Connect OKX Wallet'
-                      )}
-                    </button>
-                    
-                    <div className="mt-4 text-center text-gray-400 text-sm">
-                      By connecting, you agree to the OKX Terms of Service and Privacy Policy.
+                      <span className="text-white font-medium">OKX Wallet</span>
                     </div>
-                  </>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="bg-slate-800 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-400">Account</span>
-                        <button
-                          onClick={copyAddress}
-                          className="text-xs bg-slate-700 hover:bg-slate-600 text-gray-300 py-1 px-2 rounded transition-colors"
-                        >
-                          {copied ? 'Copied!' : 'Copy'}
-                        </button>
+                    {isConnecting && <div className="w-5 h-5 border-2 border-teal-500 border-t-transparent rounded-full animate-spin"></div>}
+                  </motion.button>
+                  
+                  {/* Phantom Wallet */}
+                  <motion.button
+                    className="w-full p-4 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-colors flex items-center justify-between"
+                    onClick={() => handleConnect(WALLET_TYPES.PHANTOM)}
+                    disabled={isConnecting}
+                    variants={walletOptionVariants}
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                  >
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 mr-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-400 flex items-center justify-center">
+                        <span className="text-white font-bold">Ph</span>
                       </div>
-                      <div className="font-mono text-sm text-white break-all">
-                        {account}
-                      </div>
+                      <span className="text-white font-medium">Phantom Wallet</span>
                     </div>
-                    
-                    <div>
-                      <div className="text-sm text-gray-400 mb-2">Network</div>
-                      <NetworkSelector />
-                    </div>
-                    
-                    <button
-                      onClick={disconnect}
-                      className="w-full bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 py-2 px-4 rounded-lg font-medium transition-colors"
-                    >
-                      Disconnect
-                    </button>
-                  </div>
-                )}
+                    {isConnecting && <div className="w-5 h-5 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>}
+                  </motion.button>
+                </div>
+                
+                {/* Footer */}
+                <div className="mt-6 text-center text-xs text-gray-500">
+                  <p>New to crypto wallets?</p>
+                  <a 
+                    href="https://www.okx.com/web3" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-teal-500 hover:text-teal-400 inline-flex items-center mt-1"
+                  >
+                    <span>Learn more about Web3 wallets</span>
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           </motion.div>

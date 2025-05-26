@@ -1,12 +1,17 @@
 // context/WalletContext.jsx
 'use client';
 
-import { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { useWalletConnect } from '../hooks/useWalletConnect';
-import { Toaster } from 'react-hot-toast';
+import { createContext, useContext, useState, useCallback } from 'react';
+import { toast } from 'react-hot-toast';
 
 // Create context
 const WalletContext = createContext(null);
+
+// Supported wallets
+export const WALLET_TYPES = {
+  OKX: 'okx',
+  PHANTOM: 'phantom'
+};
 
 // This wrapper is needed to use WalletProvider with Next.js server components
 export const WalletProviderWrapper = ({ children }) => {
@@ -18,66 +23,113 @@ export const WalletProviderWrapper = ({ children }) => {
 };
 
 export const WalletProvider = ({ children }) => {
-  const walletConnect = useWalletConnect();
-  const {
-    provider,
-    account,
-    chainId,
-    isConnecting,
-    isConnected,
-    error,
-    connect,
-    disconnect,
-    switchChain,
-    SUPPORTED_CHAINS
-  } = walletConnect;
+  const [account, setAccount] = useState(null);
+  const [chainId, setChainId] = useState(null);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const [activeWallet, setActiveWallet] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Format address for display (with ENS support in the future)
-  const formattedAccount = useMemo(() => {
-    if (!account) return null;
-    // Simple formatting for now, can be extended with ENS resolution
-    return `${account.slice(0, 6)}...${account.slice(-4)}`;
-  }, [account]);
-
-  // Get network details based on chainId
-  const networkDetails = useMemo(() => {
-    const networks = {
-      '1': { name: 'Ethereum', chainId: 1, color: 'bg-blue-500', icon: '/icons/eth.svg' },
-      '137': { name: 'Polygon', chainId: 137, color: 'bg-purple-500', icon: '/icons/polygon.svg' },
-      '56': { name: 'BSC', chainId: 56, color: 'bg-yellow-500', icon: '/icons/bnb.svg' },
-      '42161': { name: 'Arbitrum', chainId: 42161, color: 'bg-blue-400', icon: '/icons/arbitrum.svg' },
-      '10': { name: 'Optimism', chainId: 10, color: 'bg-red-500', icon: '/icons/optimism.svg' },
-      '66': { name: 'OKC', chainId: 66, color: 'bg-green-500', icon: '/icons/okc.svg' },
-    };
+  // Simulated wallet connection
+  const connect = useCallback(async (walletType) => {
+    setIsConnecting(true);
+    setError(null);
     
-    if (!chainId) return null;
-    return networks[chainId] || { 
-      name: `Chain ${chainId}`, 
-      chainId: Number(chainId),
-      color: 'bg-gray-500', 
-      icon: null 
-    };
-  }, [chainId]);
+    try {
+      // Simulate connection delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Generate a random wallet address
+      const randomAddress = `0x${Array.from({length: 40}, () => 
+        Math.floor(Math.random() * 16).toString(16)).join('')}`;
+      
+      // Set wallet state based on type
+      if (walletType === WALLET_TYPES.OKX) {
+        setAccount(randomAddress);
+        setChainId('1'); // Ethereum
+        setActiveWallet(WALLET_TYPES.OKX);
+        toast.success('OKX Wallet connected successfully');
+      } else if (walletType === WALLET_TYPES.PHANTOM) {
+        setAccount(randomAddress);
+        setChainId('solana'); // Solana
+        setActiveWallet(WALLET_TYPES.PHANTOM);
+        toast.success('Phantom Wallet connected successfully');
+      } else {
+        throw new Error('Unsupported wallet type');
+      }
+      
+      setIsConnected(true);
+    } catch (err) {
+      console.error('Wallet connection error:', err);
+      setError('Failed to connect wallet');
+      toast.error('Failed to connect wallet');
+    } finally {
+      setIsConnecting(false);
+    }
+  }, []);
+
+  // Simulated wallet disconnection
+  const disconnect = useCallback(async () => {
+    setIsConnecting(true);
+    
+    try {
+      // Simulate disconnection delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      setAccount(null);
+      setChainId(null);
+      setIsConnected(false);
+      setActiveWallet(null);
+      
+      toast.success('Wallet disconnected');
+    } catch (err) {
+      console.error('Disconnect error:', err);
+      setError('Failed to disconnect wallet');
+      toast.error('Failed to disconnect wallet');
+    } finally {
+      setIsConnecting(false);
+    }
+  }, []);
+
+  // Simulated chain switching
+  const switchChain = useCallback(async (newChainId) => {
+    if (!isConnected) {
+      toast.error('Wallet not connected');
+      return;
+    }
+    
+    setIsConnecting(true);
+    
+    try {
+      // Simulate switching delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setChainId(newChainId);
+      toast.success(`Switched to chain: ${newChainId}`);
+    } catch (err) {
+      console.error('Chain switch error:', err);
+      setError('Failed to switch chain');
+      toast.error('Failed to switch chain');
+    } finally {
+      setIsConnecting(false);
+    }
+  }, [isConnected]);
 
   // Expose context value
   const value = {
     // State
-    provider,
     account,
-    formattedAccount,
     chainId,
-    networkDetails,
     isConnecting,
     isConnected,
+    activeWallet,
     error,
     
     // Actions
     connect,
     disconnect,
     switchChain,
-    
-    // Constants
-    SUPPORTED_CHAINS
+    WALLET_TYPES
   };
 
   return (
