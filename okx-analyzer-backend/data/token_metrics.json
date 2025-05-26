@@ -1,0 +1,1334 @@
+[
+  {
+    "address": "0x1234567890abcdef1234567890abcdef12345678",
+    "liquidity": "14800.00",
+    "volume24h": "11840.00",
+    "priceUSD": "0.0000162360",
+    "holders": 146,
+    "marketCap": "11400.00",
+    "totalSupply": "1640000000",
+    "priceChange1h": "-3.60",
+    "priceChange24h": "-7.20",
+    "listingTime": "2025-05-17T03:51:23.323Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.006999999999999999,
+      "volatility": 0.3017785788135357,
+      "holderGrowthRate": 18.24976744219961
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0x4b4bd9aafbc3712a",
+        "timestamp": "2025-05-17T11:51:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "233.59",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000134499",
+        "type": "buy",
+        "sender": "0xf6bd4d431257c"
+      },
+      {
+        "txHash": "0x0eda010d36667be7",
+        "timestamp": "2025-05-17T11:48:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "815.21",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000111362",
+        "type": "sell",
+        "sender": "0xf172a96a10407"
+      },
+      {
+        "txHash": "0xb4afdb8aa7b6218b",
+        "timestamp": "2025-05-17T11:45:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "854.77",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000130504",
+        "type": "sell",
+        "sender": "0x498e877db29b9"
+      },
+      {
+        "txHash": "0xb8d952967cb326eb",
+        "timestamp": "2025-05-17T11:42:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "724.69",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000111134",
+        "type": "buy",
+        "sender": "0x9d231a223169"
+      },
+      {
+        "txHash": "0x315cb208b3bef2a5",
+        "timestamp": "2025-05-17T11:39:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "831.59",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000142482",
+        "type": "buy",
+        "sender": "0x7cd248b933a47"
+      },
+      {
+        "txHash": "0x8f91278b5014c0fa",
+        "timestamp": "2025-05-17T11:36:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "672.85",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000143148",
+        "type": "buy",
+        "sender": "0x47de45a47e4b5"
+      },
+      {
+        "txHash": "0x5c0a7b4a4d1c6ceb",
+        "timestamp": "2025-05-17T11:33:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "453.54",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000128746",
+        "type": "sell",
+        "sender": "0xdb34f5e904b44"
+      },
+      {
+        "txHash": "0xdf428ae33744c2af",
+        "timestamp": "2025-05-17T11:30:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "773.39",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000101701",
+        "type": "buy",
+        "sender": "0xcea77a6298329"
+      },
+      {
+        "txHash": "0x431b70ab5af15e0e",
+        "timestamp": "2025-05-17T11:27:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "208.82",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000099949",
+        "type": "buy",
+        "sender": "0xbbd1406d001ac"
+      },
+      {
+        "txHash": "0x784f8d13e3f940a2",
+        "timestamp": "2025-05-17T11:24:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "812.53",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000109813",
+        "type": "sell",
+        "sender": "0x1e01eb9e03adc"
+      },
+      {
+        "txHash": "0x3a933fc8fa88c798",
+        "timestamp": "2025-05-17T11:21:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "143.68",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000138897",
+        "type": "sell",
+        "sender": "0x8da92bf801938"
+      },
+      {
+        "txHash": "0xc1f541669d0bf911",
+        "timestamp": "2025-05-17T11:18:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "845.71",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000130491",
+        "type": "sell",
+        "sender": "0x25e3ab13e585b"
+      },
+      {
+        "txHash": "0xfd54f4524a3d5760",
+        "timestamp": "2025-05-17T11:15:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "125.09",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000139032",
+        "type": "buy",
+        "sender": "0x29d43d28f5584"
+      },
+      {
+        "txHash": "0xe520ad571e6c51e0",
+        "timestamp": "2025-05-17T11:12:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "140.19",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000111795",
+        "type": "buy",
+        "sender": "0x48b54d4de08b4"
+      },
+      {
+        "txHash": "0x91d230c4e0b0d3b9",
+        "timestamp": "2025-05-17T11:09:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "711.15",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000116520",
+        "type": "buy",
+        "sender": "0x020e543ee6783"
+      },
+      {
+        "txHash": "0xffa654c5bc663f4c",
+        "timestamp": "2025-05-17T11:06:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "907.05",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000121584",
+        "type": "buy",
+        "sender": "0x57679e956cf1b"
+      },
+      {
+        "txHash": "0x91f74a6f27a5647c",
+        "timestamp": "2025-05-17T11:03:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "578.54",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000107276",
+        "type": "sell",
+        "sender": "0xc0fb1fc8b0511"
+      },
+      {
+        "txHash": "0x6a7c76c7c68719a0",
+        "timestamp": "2025-05-17T11:00:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "537.92",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000120954",
+        "type": "sell",
+        "sender": "0xb6b0741cc458d"
+      },
+      {
+        "txHash": "0xf44ab38494492515",
+        "timestamp": "2025-05-17T10:57:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "925.99",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000140821",
+        "type": "sell",
+        "sender": "0xdce92e4da1b48"
+      },
+      {
+        "txHash": "0x98a7eaead1d6b881",
+        "timestamp": "2025-05-17T10:54:23.689Z",
+        "token": "0x1234567890abcdef1234567890abcdef12345678",
+        "amount": "133.68",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000142224",
+        "type": "sell",
+        "sender": "0x1624c769f629d"
+      }
+    ],
+    "symbol": "PEPEOKC",
+    "name": "Pepe OKC"
+  },
+  {
+    "address": "0xabcdef1234567890abcdef1234567890abcdef12",
+    "liquidity": "11200.00",
+    "volume24h": "8960.00",
+    "priceUSD": "0.0000132840",
+    "holders": 74,
+    "marketCap": "6600.00",
+    "totalSupply": "1160000000",
+    "priceChange1h": "-8.40",
+    "priceChange24h": "-16.80",
+    "listingTime": "2025-05-17T09:51:24.038Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.0055,
+      "volatility": 0.30627388779809533,
+      "holderGrowthRate": 36.99660864420762
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0xecf93938c4a85efe",
+        "timestamp": "2025-05-17T11:51:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "406.49",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000106029",
+        "type": "sell",
+        "sender": "0xf85e52304849c"
+      },
+      {
+        "txHash": "0x9038bb1ea13f8ea0",
+        "timestamp": "2025-05-17T11:48:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "363.84",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000118536",
+        "type": "buy",
+        "sender": "0x00633201ce1bd"
+      },
+      {
+        "txHash": "0xd97e198a5d4bd710",
+        "timestamp": "2025-05-17T11:45:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "142.89",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000101530",
+        "type": "sell",
+        "sender": "0x5fbf4c41a6274"
+      },
+      {
+        "txHash": "0x78cefecddf00ee2d",
+        "timestamp": "2025-05-17T11:42:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "723.08",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000132061",
+        "type": "buy",
+        "sender": "0x42c598e48c104"
+      },
+      {
+        "txHash": "0x264fd23e2e3e189c",
+        "timestamp": "2025-05-17T11:39:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "347.56",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000122890",
+        "type": "sell",
+        "sender": "0x9fa7bb3326f5f"
+      },
+      {
+        "txHash": "0x67e41130475397b2",
+        "timestamp": "2025-05-17T11:36:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "977.23",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000099575",
+        "type": "sell",
+        "sender": "0x6d9364009f6e8"
+      },
+      {
+        "txHash": "0x3336f5e26700b559",
+        "timestamp": "2025-05-17T11:33:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "974.45",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000109658",
+        "type": "buy",
+        "sender": "0x28f70d13e943b"
+      },
+      {
+        "txHash": "0x140af780cf8db68d",
+        "timestamp": "2025-05-17T11:30:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "653.57",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000112488",
+        "type": "buy",
+        "sender": "0x7aefb0cfae69f"
+      },
+      {
+        "txHash": "0xd1cc2aa97c4f4866",
+        "timestamp": "2025-05-17T11:27:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "657.51",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000103733",
+        "type": "sell",
+        "sender": "0x31a80eac90e0a"
+      },
+      {
+        "txHash": "0x5375c36bdd91d578",
+        "timestamp": "2025-05-17T11:24:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "278.39",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000139220",
+        "type": "sell",
+        "sender": "0xb18706816fdc5"
+      },
+      {
+        "txHash": "0xbb19962dfff243de",
+        "timestamp": "2025-05-17T11:21:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "703.28",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000099591",
+        "type": "buy",
+        "sender": "0x4eba6e31c8066"
+      },
+      {
+        "txHash": "0x4749484e0cf1e786",
+        "timestamp": "2025-05-17T11:18:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "580.29",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000143117",
+        "type": "buy",
+        "sender": "0x053a05cb2d52d"
+      },
+      {
+        "txHash": "0x01aeed3ea24bfa73",
+        "timestamp": "2025-05-17T11:15:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "642.74",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000099284",
+        "type": "buy",
+        "sender": "0xea00a1b4ee0b7"
+      },
+      {
+        "txHash": "0xd36435258ea4d2ae",
+        "timestamp": "2025-05-17T11:12:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "137.51",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000112820",
+        "type": "buy",
+        "sender": "0x9553797cfb2f3"
+      },
+      {
+        "txHash": "0xeaab584d0bb68992",
+        "timestamp": "2025-05-17T11:09:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "241.79",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000142275",
+        "type": "sell",
+        "sender": "0x83d9e539d2d1b"
+      },
+      {
+        "txHash": "0x3390f84782aa2c83",
+        "timestamp": "2025-05-17T11:06:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "946.47",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000141638",
+        "type": "buy",
+        "sender": "0x46780ab8c56a8"
+      },
+      {
+        "txHash": "0xe34abc3705fdc5ad",
+        "timestamp": "2025-05-17T11:03:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "270.13",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000136943",
+        "type": "buy",
+        "sender": "0x9c84badaeddf2"
+      },
+      {
+        "txHash": "0x789a845eb2a22a1c",
+        "timestamp": "2025-05-17T11:00:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "789.39",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000126808",
+        "type": "buy",
+        "sender": "0x4f5590b4f34d9"
+      },
+      {
+        "txHash": "0xdc34adebd1c00697",
+        "timestamp": "2025-05-17T10:57:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "346.55",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000119865",
+        "type": "buy",
+        "sender": "0xf6095ff8537bc"
+      },
+      {
+        "txHash": "0x33eb1f26cb3dad39",
+        "timestamp": "2025-05-17T10:54:24.698Z",
+        "token": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "amount": "452.66",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000136166",
+        "type": "sell",
+        "sender": "0x4f326fe7046b"
+      }
+    ],
+    "symbol": "SHIBOK",
+    "name": "Shiba OKC"
+  },
+  {
+    "address": "0x7890abcdef1234567890abcdef1234567890abcd",
+    "liquidity": "13300.00",
+    "volume24h": "10640.00",
+    "priceUSD": "0.0000150060",
+    "holders": 116,
+    "marketCap": "9400.00",
+    "totalSupply": "1440000000",
+    "priceChange1h": "-5.60",
+    "priceChange24h": "-11.20",
+    "listingTime": "2025-05-17T05:51:25.073Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.005999999999999999,
+      "volatility": 0.3253733988670216,
+      "holderGrowthRate": 19.332846432015785
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0xd70a4f616b591d36",
+        "timestamp": "2025-05-17T11:51:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "237.71",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000110891",
+        "type": "buy",
+        "sender": "0xa4549223b3ba4"
+      },
+      {
+        "txHash": "0x9616c142adc8c559",
+        "timestamp": "2025-05-17T11:48:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "632.17",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000129158",
+        "type": "buy",
+        "sender": "0x30e8de25d7da6"
+      },
+      {
+        "txHash": "0x7e46d1096162903d",
+        "timestamp": "2025-05-17T11:45:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "105.35",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000146693",
+        "type": "sell",
+        "sender": "0x6be678ddea048"
+      },
+      {
+        "txHash": "0xfb0362d017582bc4",
+        "timestamp": "2025-05-17T11:42:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "150.92",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000128615",
+        "type": "buy",
+        "sender": "0xdfdf18fe05079"
+      },
+      {
+        "txHash": "0xf57db9a2325cb6d5",
+        "timestamp": "2025-05-17T11:39:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "710.21",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000124919",
+        "type": "sell",
+        "sender": "0x454006c9711e9"
+      },
+      {
+        "txHash": "0x2815711bd249840d",
+        "timestamp": "2025-05-17T11:36:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "988.04",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000115574",
+        "type": "sell",
+        "sender": "0x2c97493873389"
+      },
+      {
+        "txHash": "0x911a53c0268f26fe",
+        "timestamp": "2025-05-17T11:33:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "805.26",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000134120",
+        "type": "buy",
+        "sender": "0x824e7e044a058"
+      },
+      {
+        "txHash": "0x8319f80507ad3f0b",
+        "timestamp": "2025-05-17T11:30:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "104.07",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000123111",
+        "type": "buy",
+        "sender": "0x4998b3f26d8dc"
+      },
+      {
+        "txHash": "0xedc6b91c3d25015b",
+        "timestamp": "2025-05-17T11:27:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "541.21",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000104304",
+        "type": "sell",
+        "sender": "0x1be65c9867368"
+      },
+      {
+        "txHash": "0x6bf68297d4d00f5b",
+        "timestamp": "2025-05-17T11:24:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "166.31",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000108141",
+        "type": "buy",
+        "sender": "0xe8948b41df6c8"
+      },
+      {
+        "txHash": "0x41eec3b05ad4cd00",
+        "timestamp": "2025-05-17T11:21:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "645.49",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000098963",
+        "type": "sell",
+        "sender": "0xf333615566e94"
+      },
+      {
+        "txHash": "0x1bbe29fee3c7a197",
+        "timestamp": "2025-05-17T11:18:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "282.11",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000139807",
+        "type": "buy",
+        "sender": "0x2ef8b8d86e796"
+      },
+      {
+        "txHash": "0x8efd3561078428cd",
+        "timestamp": "2025-05-17T11:15:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "943.75",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000138745",
+        "type": "sell",
+        "sender": "0x2fc304ccda229"
+      },
+      {
+        "txHash": "0x49bcb3ffde97074c",
+        "timestamp": "2025-05-17T11:12:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "967.23",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000134263",
+        "type": "buy",
+        "sender": "0x97ca439d7430d"
+      },
+      {
+        "txHash": "0xe45836a63816e5b3",
+        "timestamp": "2025-05-17T11:09:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "120.20",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000132731",
+        "type": "sell",
+        "sender": "0x07c4daf2534e2"
+      },
+      {
+        "txHash": "0x1d4226af50789fc9",
+        "timestamp": "2025-05-17T11:06:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "697.10",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000142069",
+        "type": "sell",
+        "sender": "0x0d47665f38a53"
+      },
+      {
+        "txHash": "0x0143651be81d2c6c",
+        "timestamp": "2025-05-17T11:03:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "884.18",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000114512",
+        "type": "sell",
+        "sender": "0xa4ba8ccef4d19"
+      },
+      {
+        "txHash": "0x5125dc810ffb3439",
+        "timestamp": "2025-05-17T11:00:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "333.54",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000114465",
+        "type": "sell",
+        "sender": "0xc3bc95ba32e89"
+      },
+      {
+        "txHash": "0xb6f360ef03d165ac",
+        "timestamp": "2025-05-17T10:57:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "448.17",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000129563",
+        "type": "buy",
+        "sender": "0x363375f972b3b"
+      },
+      {
+        "txHash": "0xb7fd9cd8fd0f802c",
+        "timestamp": "2025-05-17T10:54:25.616Z",
+        "token": "0x7890abcdef1234567890abcdef1234567890abcd",
+        "amount": "425.34",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000124370",
+        "type": "buy",
+        "sender": "0xffa4552f50213"
+      }
+    ],
+    "symbol": "CATOKC",
+    "name": "Cat Chain"
+  },
+  {
+    "address": "0xdef1234567890abcdef1234567890abcdef12345",
+    "liquidity": "20500.00",
+    "volume24h": "16400.00",
+    "priceUSD": "0.0000209100",
+    "holders": 260,
+    "marketCap": "19000.00",
+    "totalSupply": "2400000000",
+    "priceChange1h": "4.00",
+    "priceChange24h": "8.00",
+    "listingTime": "2025-05-16T18:51:25.919Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.008,
+      "volatility": 0.2931702344546382,
+      "holderGrowthRate": 15.294041676655723
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0xe12f0dce2c6695ac",
+        "timestamp": "2025-05-17T11:51:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "196.14",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000104010",
+        "type": "buy",
+        "sender": "0x8b88048d6c7fb"
+      },
+      {
+        "txHash": "0x2ab8a0e740316503",
+        "timestamp": "2025-05-17T11:48:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "926.57",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000132672",
+        "type": "sell",
+        "sender": "0x03dc8eb93b95e"
+      },
+      {
+        "txHash": "0x6f87c9ce65b73f5c",
+        "timestamp": "2025-05-17T11:45:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "678.10",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000106981",
+        "type": "sell",
+        "sender": "0xc8cd75651fe66"
+      },
+      {
+        "txHash": "0xbb096f396bf3b6ba",
+        "timestamp": "2025-05-17T11:42:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "598.49",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000131155",
+        "type": "buy",
+        "sender": "0x697c054e2f38"
+      },
+      {
+        "txHash": "0x0cf30694040875f3",
+        "timestamp": "2025-05-17T11:39:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "948.08",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000133748",
+        "type": "sell",
+        "sender": "0x80d093f506c3b"
+      },
+      {
+        "txHash": "0xa7e2bbee2bd3371a",
+        "timestamp": "2025-05-17T11:36:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "103.97",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000114150",
+        "type": "buy",
+        "sender": "0x150dcd910375"
+      },
+      {
+        "txHash": "0x72ae618b43672553",
+        "timestamp": "2025-05-17T11:33:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "634.97",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000107494",
+        "type": "buy",
+        "sender": "0xa91d8639330c3"
+      },
+      {
+        "txHash": "0x31f5836bbb230d2c",
+        "timestamp": "2025-05-17T11:30:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "200.70",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000127710",
+        "type": "buy",
+        "sender": "0x4c4536f54f91"
+      },
+      {
+        "txHash": "0x5076b7ae71e1b538",
+        "timestamp": "2025-05-17T11:27:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "767.45",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000109657",
+        "type": "buy",
+        "sender": "0xf82dcc74bdaaf"
+      },
+      {
+        "txHash": "0xf1b3917becff3759",
+        "timestamp": "2025-05-17T11:24:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "724.15",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000147150",
+        "type": "buy",
+        "sender": "0x2a39463afd82f"
+      },
+      {
+        "txHash": "0xfa8fb350d2fa55b1",
+        "timestamp": "2025-05-17T11:21:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "947.20",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000129610",
+        "type": "sell",
+        "sender": "0x6ace37c69b788"
+      },
+      {
+        "txHash": "0x58f8fe2afffb749a",
+        "timestamp": "2025-05-17T11:18:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "924.01",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000130593",
+        "type": "buy",
+        "sender": "0xa3c2a9f49123"
+      },
+      {
+        "txHash": "0x123c80280c755b56",
+        "timestamp": "2025-05-17T11:15:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "736.69",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000132895",
+        "type": "buy",
+        "sender": "0xeab08809ea637"
+      },
+      {
+        "txHash": "0x3b4e3b38710dd5b3",
+        "timestamp": "2025-05-17T11:12:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "618.78",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000108537",
+        "type": "sell",
+        "sender": "0x8eed15c242467"
+      },
+      {
+        "txHash": "0x873dcb883129cca4",
+        "timestamp": "2025-05-17T11:09:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "902.05",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000130521",
+        "type": "buy",
+        "sender": "0x5f2a930847233"
+      },
+      {
+        "txHash": "0x56c7c3e4b1f9750b",
+        "timestamp": "2025-05-17T11:06:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "447.40",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000136465",
+        "type": "sell",
+        "sender": "0x25ae9d50fbde1"
+      },
+      {
+        "txHash": "0x465c6387154e368c",
+        "timestamp": "2025-05-17T11:03:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "175.50",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000126264",
+        "type": "buy",
+        "sender": "0x092283d0d8c11"
+      },
+      {
+        "txHash": "0x0a6c6457afeae2a2",
+        "timestamp": "2025-05-17T11:00:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "960.29",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000139410",
+        "type": "buy",
+        "sender": "0xa552793d8c6c2"
+      },
+      {
+        "txHash": "0x2f45b222232e76fd",
+        "timestamp": "2025-05-17T10:57:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "503.96",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000113178",
+        "type": "buy",
+        "sender": "0x5dbfc1b651e6f"
+      },
+      {
+        "txHash": "0x5e0bae790cd141ed",
+        "timestamp": "2025-05-17T10:54:26.223Z",
+        "token": "0xdef1234567890abcdef1234567890abcdef12345",
+        "amount": "678.27",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000136619",
+        "type": "buy",
+        "sender": "0xe0d7deec8a03f"
+      }
+    ],
+    "symbol": "MOON",
+    "name": "Moon Token"
+  },
+  {
+    "address": "0x567890abcdef1234567890abcdef1234567890ab",
+    "liquidity": "14500.00",
+    "volume24h": "11600.00",
+    "priceUSD": "0.0000159900",
+    "holders": 140,
+    "marketCap": "11000.00",
+    "totalSupply": "1600000000",
+    "priceChange1h": "-4.00",
+    "priceChange24h": "-8.00",
+    "listingTime": "2025-05-17T04:51:26.630Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.005999999999999999,
+      "volatility": 0.28221354329831594,
+      "holderGrowthRate": 19.999607150573826
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0x4cbd31b2c40d7c6c",
+        "timestamp": "2025-05-17T11:51:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "770.28",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000106749",
+        "type": "buy",
+        "sender": "0x3e25f835f01db"
+      },
+      {
+        "txHash": "0x31b192c4f73811b6",
+        "timestamp": "2025-05-17T11:48:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "204.17",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000113436",
+        "type": "sell",
+        "sender": "0x49c59b5a93fa"
+      },
+      {
+        "txHash": "0xe71d6c152bc28872",
+        "timestamp": "2025-05-17T11:45:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "964.21",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000103105",
+        "type": "buy",
+        "sender": "0x7ae07be6db7b4"
+      },
+      {
+        "txHash": "0x27af9306cbce02e5",
+        "timestamp": "2025-05-17T11:42:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "658.93",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000109600",
+        "type": "buy",
+        "sender": "0x11508a6e2fe72"
+      },
+      {
+        "txHash": "0x4c7735ec670696b8",
+        "timestamp": "2025-05-17T11:39:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "519.14",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000137889",
+        "type": "buy",
+        "sender": "0x42e54314b69da"
+      },
+      {
+        "txHash": "0x8350bc2e6658df8f",
+        "timestamp": "2025-05-17T11:36:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "242.01",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000120742",
+        "type": "sell",
+        "sender": "0xb64535a172d13"
+      },
+      {
+        "txHash": "0xcc860ca921eeebbd",
+        "timestamp": "2025-05-17T11:33:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "281.25",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000131396",
+        "type": "buy",
+        "sender": "0x9b8f9a7120c57"
+      },
+      {
+        "txHash": "0x0a32dafaf37cf67a",
+        "timestamp": "2025-05-17T11:30:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "789.77",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000132895",
+        "type": "sell",
+        "sender": "0x5ab1fb320a2a1"
+      },
+      {
+        "txHash": "0xf56f7cf3dc8b652a",
+        "timestamp": "2025-05-17T11:27:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "764.29",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000107716",
+        "type": "buy",
+        "sender": "0x41d940e7b616f"
+      },
+      {
+        "txHash": "0x9f68f08451aa041d",
+        "timestamp": "2025-05-17T11:24:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "776.01",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000103983",
+        "type": "buy",
+        "sender": "0x2d50df4c7dfdf"
+      },
+      {
+        "txHash": "0x1a288fa9cc4110ff",
+        "timestamp": "2025-05-17T11:21:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "697.55",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000118278",
+        "type": "sell",
+        "sender": "0x9dcd0e7ded30e"
+      },
+      {
+        "txHash": "0x09f00566d9389f02",
+        "timestamp": "2025-05-17T11:18:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "387.31",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000143643",
+        "type": "buy",
+        "sender": "0x325cc86f5f637"
+      },
+      {
+        "txHash": "0xd5fce2f14311761a",
+        "timestamp": "2025-05-17T11:15:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "647.32",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000108968",
+        "type": "buy",
+        "sender": "0x9660ee8c70192"
+      },
+      {
+        "txHash": "0x83f4f00df9bebe8a",
+        "timestamp": "2025-05-17T11:12:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "323.08",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000134176",
+        "type": "sell",
+        "sender": "0xad09e63b2f9d1"
+      },
+      {
+        "txHash": "0x0bdfe7966d9055d5",
+        "timestamp": "2025-05-17T11:09:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "594.25",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000113019",
+        "type": "buy",
+        "sender": "0x04849f714377d"
+      },
+      {
+        "txHash": "0x0b1482500b5a66a6",
+        "timestamp": "2025-05-17T11:06:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "392.89",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000119931",
+        "type": "sell",
+        "sender": "0x48a31234864e8"
+      },
+      {
+        "txHash": "0x319f6a73c47784f0",
+        "timestamp": "2025-05-17T11:03:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "597.66",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000124072",
+        "type": "sell",
+        "sender": "0x47bf47bc58cd8"
+      },
+      {
+        "txHash": "0xea69e9984665adcc",
+        "timestamp": "2025-05-17T11:00:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "360.17",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000119169",
+        "type": "sell",
+        "sender": "0x66ea8409594bf"
+      },
+      {
+        "txHash": "0xb865d0cfc1fd5e8c",
+        "timestamp": "2025-05-17T10:57:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "324.86",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000141502",
+        "type": "buy",
+        "sender": "0xd275f79709752"
+      },
+      {
+        "txHash": "0xa5e51e0f3f999932",
+        "timestamp": "2025-05-17T10:54:27.125Z",
+        "token": "0x567890abcdef1234567890abcdef1234567890ab",
+        "amount": "111.58",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000129397",
+        "type": "buy",
+        "sender": "0x93c7b85515dfb"
+      }
+    ],
+    "symbol": "DOGE2",
+    "name": "Doge 2.0"
+  },
+  {
+    "address": "0x2345678901abcdef2345678901abcdef23456789",
+    "liquidity": "16000.00",
+    "volume24h": "12800.00",
+    "priceUSD": "0.0000172200",
+    "holders": 170,
+    "marketCap": "13000.00",
+    "totalSupply": "1800000000",
+    "priceChange1h": "-2.00",
+    "priceChange24h": "-4.00",
+    "listingTime": "2025-05-17T01:51:27.717Z",
+    "derived": {
+      "swapsLastHour": 20,
+      "avgSwapSize": 0.008,
+      "volatility": 0.2998304354473308,
+      "holderGrowthRate": 16.999846056949593
+    },
+    "recentSwaps": [
+      {
+        "txHash": "0x1da5136bf3f33cc8",
+        "timestamp": "2025-05-17T11:51:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "586.90",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000105017",
+        "type": "sell",
+        "sender": "0x62f57d8f2f652"
+      },
+      {
+        "txHash": "0x7d8267ed6fad6077",
+        "timestamp": "2025-05-17T11:48:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "246.28",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000129696",
+        "type": "buy",
+        "sender": "0xaf8bf67fe983a"
+      },
+      {
+        "txHash": "0x089bb0c49537aa78",
+        "timestamp": "2025-05-17T11:45:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "669.36",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000137441",
+        "type": "buy",
+        "sender": "0x635270bc24744"
+      },
+      {
+        "txHash": "0x0191722071a6cf72",
+        "timestamp": "2025-05-17T11:42:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "807.00",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000140019",
+        "type": "sell",
+        "sender": "0x4fd2b2b101fcb"
+      },
+      {
+        "txHash": "0xf1d8720c3e80ea56",
+        "timestamp": "2025-05-17T11:39:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "903.30",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000102162",
+        "type": "sell",
+        "sender": "0xf6c1abc0f1021"
+      },
+      {
+        "txHash": "0xf40ab544b0325f76",
+        "timestamp": "2025-05-17T11:36:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "997.08",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000130939",
+        "type": "sell",
+        "sender": "0x41c8ed1a03f4c"
+      },
+      {
+        "txHash": "0xb6a7f14222d923af",
+        "timestamp": "2025-05-17T11:33:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "338.79",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000114544",
+        "type": "buy",
+        "sender": "0x9ef30663f0cc7"
+      },
+      {
+        "txHash": "0x901c09a0f0d208b2",
+        "timestamp": "2025-05-17T11:30:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "302.69",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000121846",
+        "type": "sell",
+        "sender": "0x3957ef2f3fcd2"
+      },
+      {
+        "txHash": "0x7f971144bfd99acc",
+        "timestamp": "2025-05-17T11:27:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "683.73",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000122184",
+        "type": "buy",
+        "sender": "0x8cd135fbf37f1"
+      },
+      {
+        "txHash": "0x808caa5f2df18193",
+        "timestamp": "2025-05-17T11:24:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "454.53",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000137520",
+        "type": "buy",
+        "sender": "0x3465b355b8331"
+      },
+      {
+        "txHash": "0x3da080f6794de9dd",
+        "timestamp": "2025-05-17T11:21:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "698.72",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000143898",
+        "type": "buy",
+        "sender": "0xccf438fe8ee3a"
+      },
+      {
+        "txHash": "0xd81fecc83a8a45cc",
+        "timestamp": "2025-05-17T11:18:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "117.15",
+        "amountUSD": "0.00",
+        "priceUSD": "0.0000133910",
+        "type": "buy",
+        "sender": "0xaea744cb0d451"
+      },
+      {
+        "txHash": "0x58f247cf23545e26",
+        "timestamp": "2025-05-17T11:15:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "468.46",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000139899",
+        "type": "buy",
+        "sender": "0x2bb0290938e6e"
+      },
+      {
+        "txHash": "0x88c56df9b7570346",
+        "timestamp": "2025-05-17T11:12:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "650.78",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000143134",
+        "type": "sell",
+        "sender": "0x9f252033db7c"
+      },
+      {
+        "txHash": "0x8a1d507047b4b2e0",
+        "timestamp": "2025-05-17T11:09:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "767.47",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000101418",
+        "type": "buy",
+        "sender": "0x5a93cb9818987"
+      },
+      {
+        "txHash": "0xaeaa59093f00d3de",
+        "timestamp": "2025-05-17T11:06:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "545.39",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000114689",
+        "type": "buy",
+        "sender": "0x23052f4473d8e"
+      },
+      {
+        "txHash": "0x53b9aad543a808e8",
+        "timestamp": "2025-05-17T11:03:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "452.75",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000116339",
+        "type": "sell",
+        "sender": "0x40c0847c9e2f"
+      },
+      {
+        "txHash": "0x91d4c304ba15ff15",
+        "timestamp": "2025-05-17T11:00:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "955.90",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000101006",
+        "type": "buy",
+        "sender": "0x4124cea74abfb"
+      },
+      {
+        "txHash": "0xc94b50ed6b44f623",
+        "timestamp": "2025-05-17T10:57:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "731.55",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000100753",
+        "type": "buy",
+        "sender": "0x175b891003ec1"
+      },
+      {
+        "txHash": "0x2863e5dc5249ae2d",
+        "timestamp": "2025-05-17T10:54:28.043Z",
+        "token": "0x2345678901abcdef2345678901abcdef23456789",
+        "amount": "483.08",
+        "amountUSD": "0.01",
+        "priceUSD": "0.0000131195",
+        "type": "sell",
+        "sender": "0xce2f2d2960e15"
+      }
+    ],
+    "symbol": "FLOKIOKC",
+    "name": "Floki OKC"
+  }
+]

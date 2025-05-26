@@ -1,0 +1,162 @@
+[
+  {
+    "address": "0x40e3406eb619e",
+    "symbol": "TOKEN0",
+    "name": "Token 0",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN0.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x9935b350d3755",
+    "symbol": "TOKEN1",
+    "name": "Token 1",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN1.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x565ee31f10f9d",
+    "symbol": "TOKEN2",
+    "name": "Token 2",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN2.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xd10dd63ccdc3a",
+    "symbol": "TOKEN3",
+    "name": "Token 3",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN3.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xe095becf8d90e",
+    "symbol": "TOKEN4",
+    "name": "Token 4",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN4.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xe43cafab49bf5",
+    "symbol": "TOKEN5",
+    "name": "Token 5",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN5.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xbc32d3713780f",
+    "symbol": "TOKEN6",
+    "name": "Token 6",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN6.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xb75ee9dea1725",
+    "symbol": "TOKEN7",
+    "name": "Token 7",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN7.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x2d34564cb0d2f",
+    "symbol": "TOKEN8",
+    "name": "Token 8",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN8.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x06058338dee32",
+    "symbol": "TOKEN9",
+    "name": "Token 9",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN9.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xb9d5d325c8279",
+    "symbol": "TOKEN10",
+    "name": "Token 10",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN10.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x22ab213af65dc",
+    "symbol": "TOKEN11",
+    "name": "Token 11",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN11.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xd1720c9419667",
+    "symbol": "TOKEN12",
+    "name": "Token 12",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN12.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x2c0455bfba039",
+    "symbol": "TOKEN13",
+    "name": "Token 13",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN13.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x67da3935583d5",
+    "symbol": "TOKEN14",
+    "name": "Token 14",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN14.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x53370e31d28e9",
+    "symbol": "TOKEN15",
+    "name": "Token 15",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN15.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x4f250cf790432",
+    "symbol": "TOKEN16",
+    "name": "Token 16",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN16.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x42c07cbda4e0c",
+    "symbol": "TOKEN17",
+    "name": "Token 17",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN17.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0x6de982c019e8d",
+    "symbol": "TOKEN18",
+    "name": "Token 18",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN18.png",
+    "chainId": "66"
+  },
+  {
+    "address": "0xb8c4212fdb91b",
+    "symbol": "TOKEN19",
+    "name": "Token 19",
+    "decimals": "18",
+    "logoUrl": "https://static.okx.com/cdn/wallet/logo/TOKEN19.png",
+    "chainId": "66"
+  }
+]

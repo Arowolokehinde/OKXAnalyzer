@@ -1,0 +1,57 @@
+[
+  {
+    "symbol": "PEPEOKC",
+    "name": "Pepe OKC",
+    "address": "0x1234567890abcdef1234567890abcdef12345678",
+    "priceUSD": "0.0000123",
+    "priceChange24h": "45.6",
+    "volume24h": "35000",
+    "liquidity": "22000",
+    "holders": "456",
+    "listingTime": "2025-05-15T11:51:23.035Z"
+  },
+  {
+    "symbol": "DOGE2",
+    "name": "Doge 2.0",
+    "address": "0x567890abcdef1234567890abcdef1234567890ab",
+    "priceUSD": "0.0000345",
+    "priceChange24h": "28.9",
+    "volume24h": "18900",
+    "liquidity": "15600",
+    "holders": "289",
+    "listingTime": "2025-05-14T11:51:23.036Z"
+  },
+  {
+    "symbol": "SHIBOK",
+    "name": "Shiba OKC",
+    "address": "0xabcdef1234567890abcdef1234567890abcdef12",
+    "priceUSD": "0.00000789",
+    "priceChange24h": "15.7",
+    "volume24h": "16500",
+    "liquidity": "12300",
+    "holders": "198",
+    "listingTime": "2025-05-13T11:51:23.036Z"
+  },
+  {
+    "symbol": "CATOKC",
+    "name": "Cat Chain",
+    "address": "0x7890abcdef1234567890abcdef1234567890abcd",
+    "priceUSD": "0.0000234",
+    "priceChange24h": "12.3",
+    "volume24h": "12800",
+    "liquidity": "9700",
+    "holders": "167",
+    "listingTime": "2025-05-12T11:51:23.036Z"
+  },
+  {
+    "symbol": "FLOKIOKC",
+    "name": "Floki OKC",
+    "address": "0x2345678901abcdef2345678901abcdef23456789",
+    "priceUSD": "0.0000078",
+    "priceChange24h": "8.5",
+    "volume24h": "9800",
+    "liquidity": "7500",
+    "holders": "132",
+    "listingTime": "2025-05-11T11:51:23.036Z"
+  }
+]

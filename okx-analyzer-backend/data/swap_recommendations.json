@@ -1,0 +1,267 @@
+[
+  {
+    "symbol": "MOON",
+    "name": "Moon Token",
+    "score": 56,
+    "recommendation": "Hold",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "8%",
+        "score": 56,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "29.32%",
+        "score": 57,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "15.29 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 260,
+        "score": 52,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$20500",
+        "score": 41,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity"
+    ]
+  },
+  {
+    "symbol": "FLOKIOKC",
+    "name": "Floki OKC",
+    "score": 48,
+    "recommendation": "Avoid",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "-4%",
+        "score": 30,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "29.98%",
+        "score": 55,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "17.00 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 170,
+        "score": 34,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$16000",
+        "score": 32,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity",
+      "Unfavorable price movement (-4.00% in 24h)"
+    ]
+  },
+  {
+    "symbol": "PEPEOKC",
+    "name": "Pepe OKC",
+    "score": 44,
+    "recommendation": "Avoid",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "-7.2%",
+        "score": 14,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "30.18%",
+        "score": 54,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "18.25 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 146,
+        "score": 29,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$14800",
+        "score": 30,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity",
+      "Unfavorable price movement (-7.20% in 24h)",
+      "Small holder base (146 holders)",
+      "Limited liquidity ($14800.00)"
+    ]
+  },
+  {
+    "symbol": "DOGE2",
+    "name": "Doge 2.0",
+    "score": 43,
+    "recommendation": "Avoid",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "-8%",
+        "score": 10,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "28.22%",
+        "score": 60,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "20.00 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 140,
+        "score": 28,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$14500",
+        "score": 29,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity",
+      "Unfavorable price movement (-8.00% in 24h)",
+      "Small holder base (140 holders)",
+      "Limited liquidity ($14500.00)"
+    ]
+  },
+  {
+    "symbol": "CATOKC",
+    "name": "Cat Chain",
+    "score": 39,
+    "recommendation": "Avoid",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "-11.2%",
+        "score": 0,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "32.54%",
+        "score": 47,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "19.33 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 116,
+        "score": 23,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$13300",
+        "score": 27,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity",
+      "Unfavorable price movement (-11.20% in 24h)",
+      "Small holder base (116 holders)",
+      "Limited liquidity ($13300.00)"
+    ]
+  },
+  {
+    "symbol": "SHIBOK",
+    "name": "Shiba OKC",
+    "score": 38,
+    "recommendation": "Avoid",
+    "analysis": {
+      "volumeLiquidityRatio": {
+        "value": "0.80",
+        "score": 27,
+        "weight": 0.25
+      },
+      "priceAction": {
+        "value": "-16.8%",
+        "score": 0,
+        "weight": 0.2
+      },
+      "volatility": {
+        "value": "30.63%",
+        "score": 53,
+        "weight": 0.15
+      },
+      "holderGrowth": {
+        "value": "37.00 holders/hour",
+        "score": 100,
+        "weight": 0.2
+      },
+      "holders": {
+        "value": 74,
+        "score": 15,
+        "weight": 0.1
+      },
+      "liquidity": {
+        "value": "$11200",
+        "score": 22,
+        "weight": 0.1
+      }
+    },
+    "reasons": [
+      "Strong holder growth rate",
+      "Low trading volume relative to liquidity",
+      "Unfavorable price movement (-16.80% in 24h)",
+      "Small holder base (74 holders)",
+      "Limited liquidity ($11200.00)"
+    ]
+  }
+]
