@@ -1,42 +1,57 @@
 {
-  "name": "okc-token-dashboard",
+  "name": "okc-token-launch-dashboard",
   "version": "1.0.0",
-  "description": "Analytics dashboard for tracking new token launches on OKX Chain",
-  "main": "server.js",
+  "description": "Analytics platform for new token listings and launches on OKX Chain (OKC)",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node dashboard.js",
+    "continuous": "node dashboard.js continuous",
     "cli": "node index.js",
-    "test": "jest",
-    "test:api": "node test-api.js"
+    "test": "node test-dashboard.js",
+    "help": "node index.js help",
+    "dev": "NODE_ENV=development node dashboard.js",
+    "prod": "NODE_ENV=production node dashboard.js continuous",
+    "setup": "npm install && mkdir -p data logs",
+    "clean": "rm -rf data/* logs/*",
+    "discover": "node index.js discover",
+    "trending": "node index.js trending",
+    "recommend": "node index.js recommend",
+    "export": "node index.js export dashboard"
   },
   "keywords": [
-    "okx",
     "okc",
-    "token",
-    "crypto",
+    "okx",
     "defi",
-    "analytics"
+    "token",
+    "analytics",
+    "blockchain",
+    "trading",
+    "meme-coins",
+    "dex"
   ],
-  "author": "",
+  "author": "Kenny & Henry",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.2",
+    "axios": "^1.6.0",
     "cheerio": "^1.0.0-rc.12",
-    "cors": "^2.8.5",
-    "crypto": "^1.0.1",
-    "csv-writer": "^1.6.0",
+    "csv-writer": "^1.6.0", 
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "helmet": "^7.1.0",
     "memory-cache": "^0.2.0",
-    "morgan": "^1.10.0",
-    "winston": "^3.17.0",
-    "ws": "^8.14.2"
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
-    "nodemon": "^3.0.1",
-    "supertest": "^6.3.3"
-  }
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/okc-token-dashboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/okc-token-dashboard/issues"
+  },
+  "homepage": "https://github.com/your-username/okc-token-dashboard#readme"
 }

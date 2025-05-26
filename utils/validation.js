@@ -1,222 +1,360 @@
 /**
- * Data validation utilities for OKC Token Launch Analytics Dashboard
+ * Validation utility for OKX Token Launch Analytics Dashboard
+ * Contains validation functions for tokens, swaps, recommendations, etc.
  */
 const logger = require('./logger');
 
 /**
- * Validate token data
+ * Validate token data structure
  * @param {Object} token - Token object to validate
- * @returns {boolean} True if token is valid, false otherwise
+ * @returns {boolean} True if token is valid
  */
 function validateToken(token) {
-  // Required fields for a valid token
-  const requiredFields = ['symbol', 'name', 'address', 'volume24h', 'liquidity', 'priceUSD'];
-  
-  // Check if all required fields exist
-  for (const field of requiredFields) {
-    if (token[field] === undefined || token[field] === null) {
-      logger.debug(`Token validation failed: missing required field '${field}'`, { token });
+  try {
+    if (!token || typeof token !== 'object') {
       return false;
     }
-  }
-  
-  // Validate numeric fields
-  const numericFields = ['volume24h', 'liquidity', 'priceUSD'];
-  for (const field of numericFields) {
-    const value = parseFloat(token[field]);
-    if (isNaN(value)) {
-      logger.debug(`Token validation failed: field '${field}' is not a valid number`, { token });
+    
+    // Required fields
+    const requiredFields = ['address', 'symbol'];
+    
+    for (const field of requiredFields) {
+      if (!token[field] || typeof token[field] !== 'string') {
+        return false;
+      }
+    }
+    
+    // Address should look like a hex address
+    if (!/^0x[a-fA-F0-9]{40}$/.test(token.address)) {
       return false;
     }
-  }
-  
-  // Validate address format (basic check)
-  if (!token.address.startsWith('0x') || token.address.length < 10) {
-    logger.debug('Token validation failed: invalid address format', { token });
+    
+    // Symbol should be reasonable length
+    if (token.symbol.length > 20) {
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating token', error, { token });
     return false;
   }
-  
-  return true;
 }
 
 /**
  * Validate token metrics data
  * @param {Object} metrics - Token metrics object to validate
- * @returns {boolean} True if metrics are valid, false otherwise
+ * @returns {boolean} True if metrics are valid
  */
 function validateTokenMetrics(metrics) {
-  // Required fields for valid metrics
-  const requiredFields = ['address', 'volume24h', 'liquidity', 'priceUSD', 'holders'];
-  
-  // Check if all required fields exist
-  for (const field of requiredFields) {
-    if (metrics[field] === undefined || metrics[field] === null) {
-      logger.debug(`Metrics validation failed: missing required field '${field}'`, { metrics });
+  try {
+    if (!metrics || typeof metrics !== 'object') {
       return false;
     }
-  }
-  
-  // Check if derived metrics exist if they're included
-  if (metrics.derived) {
-    const derivedFields = ['swapsLastHour', 'volatility', 'holderGrowthRate'];
-    for (const field of derivedFields) {
-      if (metrics.derived[field] === undefined) {
-        logger.debug(`Metrics validation failed: missing derived field '${field}'`, { metrics });
+    
+    // Required fields for metrics
+    const requiredFields = ['address'];
+    
+    for (const field of requiredFields) {
+      if (!metrics[field]) {
         return false;
       }
     }
+    
+    // Numeric fields should be valid numbers or numeric strings
+    const numericFields = ['liquidity', 'volume24h', 'priceUSD', 'holders'];
+    
+    for (const field of numericFields) {
+      if (metrics[field] !== undefined) {
+        const value = typeof metrics[field] === 'string' 
+          ? parseFloat(metrics[field]) 
+          : metrics[field];
+          
+        if (isNaN(value) || value < 0) {
+          logger.warn(`Invalid numeric value for ${field}:`, metrics[field]);
+          // Don't fail validation for this, just warn
+        }
+      }
+    }
+    
+    // Check derived metrics if present
+    if (metrics.derived) {
+      const derivedFields = ['swapsLastHour', 'avgSwapSize', 'volatility', 'holderGrowthRate'];
+      
+      for (const field of derivedFields) {
+        if (metrics.derived[field] !== undefined) {
+          const value = metrics.derived[field];
+          if (typeof value !== 'number' || isNaN(value)) {
+            logger.warn(`Invalid derived metric ${field}:`, value);
+          }
+        }
+      }
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating token metrics', error, { metrics });
+    return false;
   }
-  
-  return true;
 }
 
 /**
  * Validate swap data
  * @param {Object} swap - Swap object to validate
- * @returns {boolean} True if swap is valid, false otherwise
+ * @returns {boolean} True if swap is valid
  */
 function validateSwap(swap) {
-  // Required fields for a valid swap
-  const requiredFields = ['txHash', 'timestamp', 'token', 'amount', 'amountUSD', 'priceUSD', 'type'];
-  
-  // Check if all required fields exist
-  for (const field of requiredFields) {
-    if (swap[field] === undefined || swap[field] === null) {
-      logger.debug(`Swap validation failed: missing required field '${field}'`, { swap });
-      return false;
-    }
-  }
-  
-  // Validate swap type
-  if (swap.type !== 'buy' && swap.type !== 'sell') {
-    logger.debug(`Swap validation failed: invalid swap type '${swap.type}'`, { swap });
-    return false;
-  }
-  
-  // Validate numeric fields
-  const numericFields = ['amount', 'amountUSD', 'priceUSD'];
-  for (const field of numericFields) {
-    const value = parseFloat(swap[field]);
-    if (isNaN(value) || value <= 0) {
-      logger.debug(`Swap validation failed: field '${field}' is not a valid positive number`, { swap });
-      return false;
-    }
-  }
-  
-  // Validate timestamp
   try {
-    const date = new Date(swap.timestamp);
-    if (isNaN(date.getTime())) {
-      logger.debug(`Swap validation failed: invalid timestamp '${swap.timestamp}'`, { swap });
+    if (!swap || typeof swap !== 'object') {
       return false;
     }
+    
+    // Required fields
+    const requiredFields = ['txHash', 'timestamp', 'token'];
+    
+    for (const field of requiredFields) {
+      if (!swap[field]) {
+        return false;
+      }
+    }
+    
+    // Validate transaction hash format
+    if (!/^0x[a-fA-F0-9]{64}$/.test(swap.txHash) && !/^tx-[a-fA-F0-9]{8}$/.test(swap.txHash)) {
+      // Allow both full tx hashes and our mock format
+      return false;
+    }
+    
+    // Validate timestamp
+    const timestamp = new Date(swap.timestamp);
+    if (isNaN(timestamp.getTime())) {
+      return false;
+    }
+    
+    // Validate numeric fields
+    const numericFields = ['amount', 'amountUSD', 'priceUSD'];
+    
+    for (const field of numericFields) {
+      if (swap[field] !== undefined) {
+        const value = typeof swap[field] === 'string' 
+          ? parseFloat(swap[field]) 
+          : swap[field];
+          
+        if (isNaN(value) || value < 0) {
+          return false;
+        }
+      }
+    }
+    
+    // Validate type if present
+    if (swap.type && !['buy', 'sell', 'unknown'].includes(swap.type.toLowerCase())) {
+      return false;
+    }
+    
+    return true;
   } catch (error) {
-    logger.debug(`Swap validation failed: invalid timestamp format`, { swap, error: error.message });
+    logger.errorWithContext('Error validating swap', error, { swap });
     return false;
   }
-  
-  return true;
 }
 
 /**
  * Validate recommendation data
  * @param {Object} recommendation - Recommendation object to validate
- * @returns {boolean} True if recommendation is valid, false otherwise
+ * @returns {boolean} True if recommendation is valid
  */
 function validateRecommendation(recommendation) {
-  // Required fields for a valid recommendation
-  const requiredFields = ['symbol', 'name', 'score', 'recommendation', 'reasons'];
-  
-  // Check if all required fields exist
-  for (const field of requiredFields) {
-    if (recommendation[field] === undefined || recommendation[field] === null) {
-      logger.debug(`Recommendation validation failed: missing required field '${field}'`, { recommendation });
+  try {
+    if (!recommendation || typeof recommendation !== 'object') {
       return false;
     }
-  }
-  
-  // Validate score
-  const score = recommendation.score;
-  if (typeof score !== 'number' || score < 0 || score > 100) {
-    logger.debug(`Recommendation validation failed: invalid score '${score}'`, { recommendation });
+    
+    // Required fields
+    const requiredFields = ['symbol', 'score', 'recommendation'];
+    
+    for (const field of requiredFields) {
+      if (recommendation[field] === undefined || recommendation[field] === null) {
+        return false;
+      }
+    }
+    
+    // Validate score range
+    if (typeof recommendation.score !== 'number' || 
+        recommendation.score < 0 || 
+        recommendation.score > 100) {
+      return false;
+    }
+    
+    // Validate recommendation text
+    const validRecommendations = ['Strong Buy', 'Buy', 'Hold', 'Avoid', 'Strong Avoid'];
+    if (!validRecommendations.includes(recommendation.recommendation)) {
+      return false;
+    }
+    
+    // Validate reasons array if present
+    if (recommendation.reasons && !Array.isArray(recommendation.reasons)) {
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating recommendation', error, { recommendation });
     return false;
   }
-  
-  // Validate recommendation text
-  const validRecommendations = ['Strong Buy', 'Buy', 'Hold', 'Avoid', 'Strong Avoid'];
-  if (!validRecommendations.includes(recommendation.recommendation)) {
-    logger.debug(`Recommendation validation failed: invalid recommendation text '${recommendation.recommendation}'`, { recommendation });
-    return false;
-  }
-  
-  // Validate reasons
-  if (!Array.isArray(recommendation.reasons) || recommendation.reasons.length === 0) {
-    logger.debug(`Recommendation validation failed: reasons must be a non-empty array`, { recommendation });
-    return false;
-  }
-  
-  return true;
 }
 
 /**
- * Validate API request parameters
- * @param {Object} params - Request parameters
- * @param {Array} required - Required parameter names
- * @param {Object} validators - Parameter validators
- * @returns {Object} Validation result { isValid, errors }
+ * Validate API response format
+ * @param {Object} response - API response to validate
+ * @returns {boolean} True if response format is valid
  */
-function validateRequestParams(params, required = [], validators = {}) {
-  const errors = [];
-  
-  // Check required parameters
-  for (const param of required) {
-    if (params[param] === undefined || params[param] === null) {
-      errors.push(`Missing required parameter: ${param}`);
-    }
-  }
-  
-  // Apply custom validators
-  for (const [param, validator] of Object.entries(validators)) {
-    if (params[param] !== undefined && params[param] !== null) {
-      try {
-        const isValid = validator(params[param]);
-        if (!isValid) {
-          errors.push(`Invalid parameter: ${param}`);
-        }
-      } catch (error) {
-        errors.push(`Validation error for parameter ${param}: ${error.message}`);
-      }
-    }
-  }
-  
-  return {
-    isValid: errors.length === 0,
-    errors
-  };
-}
-
-// Common validators for request parameters
-const paramValidators = {
-  address: (value) => typeof value === 'string' && value.startsWith('0x') && value.length >= 10,
-  positiveNumber: (value) => !isNaN(parseFloat(value)) && parseFloat(value) > 0,
-  nonNegativeNumber: (value) => !isNaN(parseFloat(value)) && parseFloat(value) >= 0,
-  boolean: (value) => typeof value === 'boolean' || value === 'true' || value === 'false',
-  nonEmptyString: (value) => typeof value === 'string' && value.trim().length > 0,
-  nonEmptyArray: (value) => Array.isArray(value) && value.length > 0,
-  isoDate: (value) => {
-    try {
-      return !isNaN(new Date(value).getTime());
-    } catch (e) {
+function validateApiResponse(response) {
+  try {
+    if (!response || typeof response !== 'object') {
       return false;
     }
+    
+    // Check for expected response structure
+    if (response.data === undefined) {
+      return false;
+    }
+    
+    // For OKX API responses, check code if present
+    if (response.data && response.data.code !== undefined) {
+      // OKX API returns '0' for success
+      return response.data.code === '0';
+    }
+    
+    // For other responses, check status
+    if (response.status !== undefined) {
+      return response.status >= 200 && response.status < 300;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating API response', error);
+    return false;
   }
-};
+}
+
+/**
+ * Validate configuration object
+ * @param {Object} config - Configuration object to validate
+ * @returns {boolean} True if config is valid
+ */
+function validateConfig(config) {
+  try {
+    if (!config || typeof config !== 'object') {
+      return false;
+    }
+    
+    // Check for required config sections
+    const requiredSections = ['apis', 'outputPaths', 'dex'];
+    
+    for (const section of requiredSections) {
+      if (!config[section] || typeof config[section] !== 'object') {
+        logger.warn(`Missing required config section: ${section}`);
+        return false;
+      }
+    }
+    
+    // Validate API endpoints
+    if (!config.apis.baseUrl || typeof config.apis.baseUrl !== 'string') {
+      logger.warn('Missing or invalid baseUrl in config');
+      return false;
+    }
+    
+    // Validate output paths
+    if (!config.outputPaths.tokenList || typeof config.outputPaths.tokenList !== 'string') {
+      logger.warn('Missing or invalid tokenList path in config');
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating config', error);
+    return false;
+  }
+}
+
+/**
+ * Sanitize string input to prevent injection attacks
+ * @param {string} input - Input string to sanitize
+ * @returns {string} Sanitized string
+ */
+function sanitizeString(input) {
+  try {
+    if (typeof input !== 'string') {
+      return '';
+    }
+    
+    // Remove potentially dangerous characters
+    return input
+      .replace(/[<>]/g, '') // Remove HTML tags
+      .replace(/['"]/g, '') // Remove quotes
+      .replace(/[;&|`]/g, '') // Remove command injection chars
+      .trim();
+  } catch (error) {
+    logger.errorWithContext('Error sanitizing string', error, { input });
+    return '';
+  }
+}
+
+/**
+ * Validate Ethereum address format
+ * @param {string} address - Address to validate
+ * @returns {boolean} True if address format is valid
+ */
+function validateAddress(address) {
+  try {
+    if (!address || typeof address !== 'string') {
+      return false;
+    }
+    
+    // Check basic hex format
+    if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.errorWithContext('Error validating address', error, { address });
+    return false;
+  }
+}
+
+/**
+ * Validate and normalize numeric value
+ * @param {string|number} value - Value to validate and normalize
+ * @param {number} defaultValue - Default value if invalid (default: 0)
+ * @returns {number} Normalized numeric value
+ */
+function validateAndNormalizeNumber(value, defaultValue = 0) {
+  try {
+    if (value === undefined || value === null) {
+      return defaultValue;
+    }
+    
+    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+    
+    if (isNaN(numValue) || !isFinite(numValue)) {
+      return defaultValue;
+    }
+    
+    return numValue;
+  } catch (error) {
+    logger.errorWithContext('Error validating number', error, { value });
+    return defaultValue;
+  }
+}
 
 module.exports = {
   validateToken,
   validateTokenMetrics,
   validateSwap,
   validateRecommendation,
-  validateRequestParams,
-  paramValidators
+  validateApiResponse,
+  validateConfig,
+  validateAddress,
+  sanitizeString,
+  validateAndNormalizeNumber
 };

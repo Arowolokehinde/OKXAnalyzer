@@ -1,529 +1,316 @@
-#!/usr/bin/env node
 /**
- * index.js
- * Command-line interface for OKC Token Launch Analytics Dashboard
+ * dashboard.js
+ * Main dashboard runner for OKC Token Launch Analytics Dashboard
+ * This runs the full pipeline automatically (separate from the CLI interface)
  */
-const fs = require('fs');
-const path = require('path');
 const config = require('./config');
 const logger = require('./utils/logger');
 
-// Import modules
-const tokenDiscovery = require('./modules/tokenDiscovery');
-const trendingMemeScraper = require('./modules/trendingMemeScraper');
-const tokenMetrics = require('./modules/tokenMetrics');
-const tokenComparison = require('./modules/tokenComparison');
-const swapRecommender = require('./modules/swapRecommender');
-const tokenFilter = require('./modules/tokenFilter');
-const exporter = require('./modules/exporter');
-
-// Parse command line arguments
-const args = process.argv.slice(2);
-const command = args[0];
-
-// Ensure data directory exists
-const dataDir = path.dirname(config.outputPaths.newTokens);
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
+// Import all modules
+const { discoverNewTokens } = require('./modules/tokenDiscovery');
+const { getTrendingMemeCoins } = require('./modules/trendingMemeScraper');
+const { getDetailedMetrics } = require('./modules/tokenMetrics');
+const { generateRecommendations } = require('./modules/swapRecommender');
+const { compareTokens } = require('./modules/tokenComparison');
+const { filterAndExport } = require('./modules/tokenFilter');
+const { exportDashboardData } = require('./modules/exporter');
 
 /**
- * Display command help
+ * Main dashboard orchestration function
  */
-function displayHelp() {
-  console.log(`
-OKC Token Launch Analytics Dashboard CLI
-=======================================
-
-Usage: node index.js <command> [options]
-
-Commands:
-  discover                         Discover new token launches on OKC
-  trending                         Get trending meme coins
-  metrics <address>                Get detailed metrics for a specific token
-  compare <address1,address2,...>  Compare multiple tokens
-  recommend                        Generate swap recommendations
-  filter [options]                 Filter tokens based on criteria
-  export <type>                    Export data to files
-  help                             Display this help message
-
-Options for 'filter':
-  --min-volume <value>     Minimum 24h volume (USD)
-  --max-volume <value>     Maximum 24h volume (USD)
-  --min-liquidity <value>  Minimum liquidity (USD)
-  --max-liquidity <value>  Maximum liquidity (USD)
-  --min-holders <value>    Minimum holder count
-  --max-age <hours>        Maximum age in hours
-  --meme-only              Only include meme coins
-  --sort-by <field>        Field to sort by (volume24h, liquidity, holders, etc.)
-  --ascending              Sort in ascending order (default: descending)
-
-Options for 'export':
-  --format <json|csv>      Export format (default: both)
-
-Examples:
-  node index.js discover
-  node index.js trending
-  node index.js metrics 0x1234567890abcdef1234567890abcdef12345678
-  node index.js compare 0x1234,0x5678
-  node index.js filter --min-volume 5000 --min-liquidity 1000 --max-age 24
-  node index.js recommend
-  node index.js export dashboard
-  `);
-}
-
-/**
- * Discover new tokens
- */
-async function discoverTokens() {
+async function runDashboard() {
   try {
-    console.log('Discovering new tokens...');
+    logger.info('🚀 Starting OKC Token Launch Analytics Dashboard');
     
-    const newTokens = await tokenDiscovery.discoverNewTokens();
+    const startTime = Date.now();
+    const dashboardData = {};
     
-    console.log(`\nDiscovered ${newTokens.length} new tokens:`);
-    console.table(newTokens.map(token => ({
-      Symbol: token.symbol,
-      Name: token.name,
-      Price: `$${token.priceUSD}`,
-      Volume: `$${token.volume24h}`,
-      Liquidity: `$${token.liquidity}`,
-      Holders: token.holders
-    })));
-    
-    console.log(`\nTokens saved to: ${config.outputPaths.newTokens}`);
-  } catch (error) {
-    console.error('Error discovering tokens:', error);
-  }
-}
-
-/**
- * Get trending meme coins
- */
-async function getTrendingMemes() {
-  try {
-    console.log('Getting trending meme coins...');
-    
-    const trendingMemes = await trendingMemeScraper.getTrendingMemeCoins();
-    
-    console.log(`\nFound ${trendingMemes.length} trending meme coins:`);
-    console.table(trendingMemes.map(token => ({
-      Symbol: token.symbol,
-      Name: token.name,
-      Price: `$${token.priceUSD}`,
-      'Change 24h': `${token.priceChange24h}%`,
-      Volume: `$${token.volume24h}`,
-      Liquidity: `$${token.liquidity}`,
-      Holders: token.holders
-    })));
-    
-    console.log(`\nMeme coins saved to: ${config.outputPaths.trendingMemes}`);
-  } catch (error) {
-    console.error('Error getting trending meme coins:', error);
-  }
-}
-
-/**
- * Get detailed metrics for a token
- * @param {string} address - Token address
- */
-async function getTokenMetricsForAddress(address) {
-  try {
-    if (!address) {
-      console.error('Error: Token address is required');
-      return;
+    // Step 1: Discover new tokens
+    logger.info('📡 Step 1: Discovering new tokens...');
+    try {
+      dashboardData.newTokens = await discoverNewTokens();
+      logger.info(`Found ${dashboardData.newTokens.length} new tokens`);
+    } catch (error) {
+      logger.errorWithContext('Error in token discovery', error);
+      dashboardData.newTokens = [];
     }
     
-    console.log(`Getting detailed metrics for token ${address}...`);
-    
-    const metrics = await tokenMetrics.getTokenMetrics(address);
-    
-    if (!metrics) {
-      console.error(`No metrics found for token ${address}`);
-      return;
+    // Step 2: Get trending meme coins
+    logger.info('🔥 Step 2: Fetching trending meme coins...');
+    try {
+      dashboardData.trendingMemes = await getTrendingMemeCoins();
+      logger.info(`Found ${dashboardData.trendingMemes.length} trending meme coins`);
+    } catch (error) {
+      logger.errorWithContext('Error fetching trending memes', error);
+      dashboardData.trendingMemes = [];
     }
     
-    console.log('\nToken Info:');
-    console.log(`Symbol: ${metrics.symbol || 'Unknown'}`);
-    console.log(`Name: ${metrics.name || 'Unknown'}`);
-    console.log(`Address: ${metrics.address}`);
-    console.log(`Price: $${metrics.priceUSD}`);
-    console.log(`24h Volume: $${metrics.volume24h}`);
-    console.log(`Liquidity: $${metrics.liquidity}`);
-    console.log(`Holders: ${metrics.holders}`);
-    console.log(`Market Cap: $${metrics.marketCap || 'N/A'}`);
-    console.log(`Total Supply: ${metrics.totalSupply || 'N/A'}`);
-    console.log(`Price Change 1h: ${metrics.priceChange1h || '0'}%`);
-    console.log(`Price Change 24h: ${metrics.priceChange24h || '0'}%`);
-    
-    if (metrics.derived) {
-      console.log('\nDerived Metrics:');
-      console.log(`Swaps Last Hour: ${metrics.derived.swapsLastHour}`);
-      console.log(`Average Swap Size: $${metrics.derived.avgSwapSize.toFixed(2)}`);
-      console.log(`Volatility: ${(metrics.derived.volatility * 100).toFixed(2)}%`);
-      console.log(`Holder Growth Rate: ${metrics.derived.holderGrowthRate.toFixed(2)} holders/hour`);
-    }
-    
-    if (metrics.recentSwaps && metrics.recentSwaps.length > 0) {
-      console.log('\nRecent Swaps:');
-      console.table(metrics.recentSwaps.slice(0, 5).map(swap => ({
-        Time: new Date(swap.timestamp).toLocaleTimeString(),
-        Type: swap.type,
-        Amount: `$${swap.amountUSD}`,
-        Price: `$${swap.priceUSD}`
-      })));
-      console.log(`... and ${metrics.recentSwaps.length - 5} more swaps`);
-    }
-  } catch (error) {
-    console.error('Error getting token metrics:', error);
-  }
-}
-
-/**
- * Compare multiple tokens
- * @param {string} addressList - Comma-separated list of token addresses
- */
-async function compareTokens(addressList) {
-  try {
-    if (!addressList) {
-      console.error('Error: Token addresses are required (comma-separated)');
-      return;
-    }
-    
-    const addresses = addressList.split(',');
-    
-    console.log(`Comparing ${addresses.length} tokens...`);
-    
-    // Create token objects for comparison
-    const tokensToCompare = addresses.map(address => ({
-      address: address.trim()
-    }));
-    
-    const comparisonResults = await tokenComparison.compareTokens(tokensToCompare);
-    
-    if (comparisonResults.length === 0) {
-      console.error('No comparison results generated');
-      return;
-    }
-    
-    console.log('\nToken Comparison Results:');
-    console.table(comparisonResults.map(token => ({
-      Symbol: token.symbol,
-      Price: `$${token.priceUSD}`,
-      'Volume 24h': `$${token.volume24h}`,
-      Liquidity: `$${token.liquidity}`,
-      'Price Change': `${token.priceChange24h}%`,
-      Holders: token.holders,
-      Volatility: `${token.volatility}%`,
-      Score: token.score
-    })));
-    
-    console.log('\nComparison Report:');
-    console.log(tokenComparison.generateComparisonReport(comparisonResults));
-    
-    console.log(`\nComparison results saved to: ${config.outputPaths.tokenComparison}`);
-  } catch (error) {
-    console.error('Error comparing tokens:', error);
-  }
-}
-
-/**
- * Filter tokens based on criteria
- * @param {Array} filterArgs - Filter arguments
- */
-async function filterTokens(filterArgs) {
-  try {
-    console.log('Filtering tokens...');
-    
-    // Parse filter options
-    const filters = {};
-    const options = { sortBy: 'volume24h', ascending: false };
-    
-    for (let i = 0; i < filterArgs.length; i++) {
-      const arg = filterArgs[i];
+    // Step 3: Get detailed metrics for all tokens
+    logger.info('📊 Step 3: Calculating detailed metrics...');
+    try {
+      // Combine new tokens and trending memes
+      const allTokens = [
+        ...(dashboardData.newTokens || []),
+        ...(dashboardData.trendingMemes || [])
+      ];
       
-      switch (arg) {
-        case '--min-volume':
-          filters.minVolume = parseFloat(filterArgs[++i]);
-          break;
+      // Remove duplicates based on address
+      const uniqueTokens = allTokens.filter((token, index, self) => 
+        index === self.findIndex(t => t.address === token.address)
+      );
+      
+      dashboardData.detailedMetrics = await getDetailedMetrics(uniqueTokens);
+      logger.info(`Analyzed ${dashboardData.detailedMetrics.length} tokens with detailed metrics`);
+    } catch (error) {
+      logger.errorWithContext('Error calculating detailed metrics', error);
+      dashboardData.detailedMetrics = [];
+    }
+    
+    // Step 4: Generate swap recommendations
+    logger.info('💡 Step 4: Generating swap recommendations...');
+    try {
+      const tokensForRecommendations = dashboardData.detailedMetrics.length > 0 
+        ? dashboardData.detailedMetrics 
+        : [...(dashboardData.newTokens || []), ...(dashboardData.trendingMemes || [])];
         
-        case '--max-volume':
-          filters.maxVolume = parseFloat(filterArgs[++i]);
-          break;
+      dashboardData.recommendations = await generateRecommendations(tokensForRecommendations);
+      logger.info(`Generated ${dashboardData.recommendations.length} swap recommendations`);
+    } catch (error) {
+      logger.errorWithContext('Error generating recommendations', error);
+      dashboardData.recommendations = [];
+    }
+    
+    // Step 5: Compare tokens
+    logger.info('🔄 Step 5: Comparing tokens...');
+    try {
+      const tokensForComparison = dashboardData.detailedMetrics.length > 0 
+        ? dashboardData.detailedMetrics.slice(0, 20) // Compare top 20
+        : [];
         
-        case '--min-liquidity':
-          filters.minLiquidity = parseFloat(filterArgs[++i]);
-          break;
-        
-        case '--max-liquidity':
-          filters.maxLiquidity = parseFloat(filterArgs[++i]);
-          break;
-        
-        case '--min-holders':
-          filters.minHolders = parseInt(filterArgs[++i]);
-          break;
-        
-        case '--max-age':
-          filters.maxAge = parseInt(filterArgs[++i]) * 60 * 60 * 1000; // Convert hours to ms
-          break;
-        
-        case '--meme-only':
-          filters.memeOnly = true;
-          break;
-        
-        case '--sort-by':
-          options.sortBy = filterArgs[++i];
-          break;
-        
-        case '--ascending':
-          options.ascending = true;
-          break;
+      if (tokensForComparison.length > 0) {
+        dashboardData.comparisonResults = await compareTokens(tokensForComparison);
+        logger.info(`Compared ${dashboardData.comparisonResults.length} tokens`);
+      } else {
+        dashboardData.comparisonResults = [];
+        logger.info('No tokens available for comparison');
       }
+    } catch (error) {
+      logger.errorWithContext('Error comparing tokens', error);
+      dashboardData.comparisonResults = [];
     }
     
-    // Get all tokens
-    const [newTokens, trendingMemes] = await Promise.all([
-      tokenDiscovery.discoverNewTokens(),
-      trendingMemeScraper.getTrendingMemeCoins()
-    ]);
-    
-    // Combine tokens
-    const allTokens = [];
-    const addressSet = new Set();
-    
-    [...newTokens, ...trendingMemes].forEach(token => {
-      if (!addressSet.has(token.address)) {
-        addressSet.add(token.address);
-        allTokens.push(token);
+    // Step 6: Apply filters and export
+    logger.info('🎯 Step 6: Filtering and exporting data...');
+    try {
+      // Apply some example filters
+      const filters = {
+        minVolume: config.filters?.newToken?.minVolume || 1000,
+        minLiquidity: config.filters?.newToken?.minLiquidity || 500,
+        maxAge: config.filters?.newToken?.maxAge || (48 * 60 * 60 * 1000) // 48 hours
+      };
+      
+      const allTokensForFiltering = [
+        ...(dashboardData.newTokens || []),
+        ...(dashboardData.trendingMemes || [])
+      ];
+      
+      if (allTokensForFiltering.length > 0) {
+        dashboardData.filteredTokens = await filterAndExport(
+          allTokensForFiltering, 
+          filters, 
+          'volume24h', 
+          false // descending order
+        );
+        logger.info(`Filtered down to ${dashboardData.filteredTokens.length} tokens`);
+      } else {
+        dashboardData.filteredTokens = [];
       }
-    });
-    
-    console.log(`Total tokens before filtering: ${allTokens.length}`);
-    
-    // Apply filters
-    const filteredTokens = await tokenFilter.filterAndExport(
-      allTokens,
-      filters,
-      options.sortBy,
-      options.ascending
-    );
-    
-    console.log(`\nMatched ${filteredTokens.length} tokens after filtering:`);
-    console.table(filteredTokens.slice(0, 10).map(token => ({
-      Symbol: token.symbol,
-      Name: token.name,
-      Price: `$${token.priceUSD}`,
-      Volume: `$${token.volume24h}`,
-      Liquidity: `$${token.liquidity}`,
-      Holders: token.holders,
-      Age: token.ageDisplay
-    })));
-    
-    if (filteredTokens.length > 10) {
-      console.log(`... and ${filteredTokens.length - 10} more tokens`);
+    } catch (error) {
+      logger.errorWithContext('Error filtering tokens', error);
+      dashboardData.filteredTokens = [];
     }
     
-    // Log filter summary
-    const summary = tokenFilter.getFilterSummary(allTokens, filteredTokens, filters);
-    console.log('\nFilter Summary:');
-    console.log(`- Total tokens: ${summary.totalTokens}`);
-    console.log(`- Filtered tokens: ${summary.filteredTokens}`);
-    console.log(`- Rejected tokens: ${summary.rejectedTokens} (${summary.rejectionRate})`);
-    console.log(`- Filters applied: ${summary.filtersApplied.join(', ') || 'none'}`);
-    
-    console.log(`\nFiltered tokens saved to: ${config.outputPaths.filteredTokens}`);
-  } catch (error) {
-    console.error('Error filtering tokens:', error);
-  }
-}
-
-/**
- * Generate swap recommendations
- */
-async function generateRecommendations() {
-  try {
-    console.log('Generating swap recommendations...');
-    
-    // Get tokens to analyze
-    const [newTokens, trendingMemes] = await Promise.all([
-      tokenDiscovery.discoverNewTokens(),
-      trendingMemeScraper.getTrendingMemeCoins()
-    ]);
-    
-    // Combine tokens
-    const tokensToAnalyze = [];
-    const addressSet = new Set();
-    
-    [...newTokens, ...trendingMemes].forEach(token => {
-      if (!addressSet.has(token.address)) {
-        addressSet.add(token.address);
-        tokensToAnalyze.push(token);
-      }
-    });
-    
-    // Generate recommendations
-    const recommendations = await swapRecommender.generateRecommendations(tokensToAnalyze);
-    
-    console.log(`\nGenerated ${recommendations.length} swap recommendations:`);
-    console.table(recommendations.map(rec => ({
-      Symbol: rec.symbol,
-      Name: rec.name,
-      Score: rec.score,
-      Recommendation: rec.recommendation,
-      Reasons: rec.reasons.length > 0 ? rec.reasons[0] : ''
-    })));
-    
-    console.log('\nDetailed Recommendation Report:');
-    console.log(swapRecommender.generateRecommendationReport(recommendations));
-    
-    console.log(`\nRecommendations saved to: ${config.outputPaths.recommendations}`);
-  } catch (error) {
-    console.error('Error generating recommendations:', error);
-  }
-}
-
-/**
- * Export data to files
- * @param {string} type - Type of data to export
- * @param {Array} exportArgs - Export arguments
- */
-async function exportData(type, exportArgs) {
-  try {
-    if (!type) {
-      console.error('Error: Export type is required');
-      return;
-    }
-    
-    // Parse export options
-    let format = 'both';
-    
-    for (let i = 0; i < exportArgs.length; i++) {
-      const arg = exportArgs[i];
-      
-      if (arg === '--format' && i + 1 < exportArgs.length) {
-        format = exportArgs[++i];
-      }
-    }
-    
-    console.log(`Exporting ${type} data in ${format} format...`);
-    
-    let exportResult;
-    
-    switch (type) {
-      case 'new-tokens':
-      case 'newtokens':
-        const newTokens = await tokenDiscovery.discoverNewTokens();
-        exportResult = await exporter.exportToMultipleFormats('newTokens', newTokens);
-        break;
-      
-      case 'trending-memes':
-      case 'trendingmemes':
-        const trendingMemes = await trendingMemeScraper.getTrendingMemeCoins();
-        exportResult = await exporter.exportToMultipleFormats('trendingMemes', trendingMemes);
-        break;
-      
-      case 'comparisons':
-      case 'comparison':
-        const tokens = await tokenDiscovery.discoverNewTokens();
-        const compResults = await tokenComparison.compareTokens(tokens.slice(0, 10));
-        exportResult = await exporter.exportToMultipleFormats('comparisonResults', compResults);
-        break;
-      
-      case 'recommendations':
-      case 'recommendation':
-        const tokensForRecs = await tokenDiscovery.discoverNewTokens();
-        const recommendations = await swapRecommender.generateRecommendations(tokensForRecs.slice(0, 10));
-        exportResult = await exporter.exportToMultipleFormats('recommendations', recommendations);
-        break;
-      
-      case 'dashboard':
-      case 'all':
-        // Get dashboard data
-        const allNewTokens = await tokenDiscovery.discoverNewTokens();
-        const allTrendingMemes = await trendingMemeScraper.getTrendingMemeCoins();
-        const metrics = await tokenMetrics.getDetailedMetrics(allNewTokens.slice(0, 5));
-        const allCompResults = await tokenComparison.compareTokens(allNewTokens.slice(0, 10));
-        const allRecommendations = await swapRecommender.generateRecommendations(allNewTokens.slice(0, 10));
+    // Step 7: Export all data
+    logger.info('💾 Step 7: Exporting dashboard data...');
+    try {
+      const exportResults = await exportDashboardData(dashboardData);
+      if (exportResults.success) {
+        logger.info('✅ Dashboard data exported successfully');
         
-        // Export all dashboard data
-        exportResult = await exporter.exportDashboardData({
-          newTokens: allNewTokens,
-          trendingMemes: allTrendingMemes,
-          detailedMetrics: metrics,
-          comparisonResults: allCompResults,
-          recommendations: allRecommendations
+        // Log export summary
+        Object.entries(exportResults.results || {}).forEach(([dataType, result]) => {
+          const jsonStatus = result.json ? '✅' : '❌';
+          const csvStatus = result.csv ? '✅' : '❌';
+          logger.info(`   ${dataType}: JSON ${jsonStatus}, CSV ${csvStatus}`);
         });
-        break;
-      
-      default:
-        console.error(`Unknown export type: ${type}`);
-        return;
+      } else {
+        logger.errorWithContext('Export failed', new Error(exportResults.error));
+      }
+    } catch (error) {
+      logger.errorWithContext('Error exporting data', error);
     }
     
-    console.log('\nExport Results:');
+    // Generate summary
+    const endTime = Date.now();
+    const duration = Math.round((endTime - startTime) / 1000);
     
-    if (exportResult.json) {
-      console.log('✓ JSON export successful');
-    }
+    logger.info('📈 Dashboard execution completed!');
+    logger.info(`⏱️  Total execution time: ${duration} seconds`);
+    logger.info('📊 Summary:');
+    logger.info(`   - New tokens discovered: ${dashboardData.newTokens?.length || 0}`);
+    logger.info(`   - Trending meme coins: ${dashboardData.trendingMemes?.length || 0}`);
+    logger.info(`   - Tokens with detailed metrics: ${dashboardData.detailedMetrics?.length || 0}`);
+    logger.info(`   - Swap recommendations: ${dashboardData.recommendations?.length || 0}`);
+    logger.info(`   - Token comparisons: ${dashboardData.comparisonResults?.length || 0}`);
+    logger.info(`   - Filtered tokens: ${dashboardData.filteredTokens?.length || 0}`);
     
-    if (exportResult.csv) {
-      console.log('✓ CSV export successful');
-    }
+    return dashboardData;
     
-    console.log('\nFiles saved to data directory');
   } catch (error) {
-    console.error('Error exporting data:', error);
+    logger.errorWithContext('Fatal error in dashboard execution', error);
+    throw error;
   }
 }
 
 /**
- * Execute a command
+ * Run dashboard in continuous mode (with intervals)
  */
-async function executeCommand() {
-  try {
-    if (!command || command === 'help' || command === '--help' || command === '-h') {
-      displayHelp();
-      return;
+async function runContinuous() {
+  logger.info('🔄 Starting dashboard in continuous mode');
+  
+  const interval = config.dashboard?.discoveryInterval || 15 * 60 * 1000; // 15 minutes
+  
+  // Initial run
+  await runDashboard();
+  
+  // Set up interval
+  setInterval(async () => {
+    try {
+      logger.info('🔄 Running scheduled dashboard update');
+      await runDashboard();
+    } catch (error) {
+      logger.errorWithContext('Error in scheduled dashboard run', error);
     }
+  }, interval);
+  
+  logger.info(`⏰ Dashboard scheduled to run every ${interval / 60000} minutes`);
+}
+
+/**
+ * Display dashboard information
+ */
+function displayInfo() {
+  console.log(`
+╔══════════════════════════════════════════════════════════════════╗
+║                OKC Token Launch Analytics Dashboard              ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  🔍 Discovers new tokens on OKX Chain (OKC)                    ║
+║  🔥 Tracks trending meme coins                                  ║
+║  📊 Analyzes token metrics and trading activity                 ║
+║  💡 Generates swap recommendations                              ║
+║  🔄 Compares tokens side-by-side                               ║
+║  📁 Exports data in JSON and CSV formats                       ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Dashboard Runner Commands:
+- node dashboard.js          : Run full dashboard once
+- node dashboard.js continuous : Run dashboard continuously
+- node dashboard.js help     : Show this help
+
+CLI Commands (use index.js):
+- node index.js discover     : Discover new tokens
+- node index.js trending     : Get trending meme coins  
+- node index.js metrics <addr> : Get token metrics
+- node index.js compare <addrs> : Compare tokens
+- node index.js recommend    : Generate recommendations
+- node index.js filter       : Filter tokens
+- node index.js export <type> : Export data
+
+Configuration:
+- Chain: OKC (Chain ID: ${config.dex?.chainId || 66})
+- API Base: ${config.apis?.baseUrl || 'Not configured'}
+- Output Directory: ./data/
+- Use Real API: ${config.features?.useRealApi ? 'Yes' : 'No'}
+- Mock Fallback: ${config.features?.useMockDataOnFailure ? 'Enabled' : 'Disabled'}
+`);
+}
+
+/**
+ * Main execution logic for dashboard runner
+ */
+async function main() {
+  try {
+    const args = process.argv.slice(2);
+    const command = args[0];
+    
+    // Display info first
+    displayInfo();
     
     switch (command) {
-      case 'discover':
-        await discoverTokens();
+      case 'continuous':
+        await runContinuous();
         break;
-      
-      case 'trending':
-        await getTrendingMemes();
+        
+      case 'help':
+        // Info already displayed
+        process.exit(0);
         break;
-      
-      case 'metrics':
-        await getTokenMetricsForAddress(args[1]);
-        break;
-      
-      case 'compare':
-        await compareTokens(args[1]);
-        break;
-      
-      case 'filter':
-        await filterTokens(args.slice(1));
-        break;
-      
-      case 'recommend':
-        await generateRecommendations();
-        break;
-      
-      case 'export':
-        await exportData(args[1], args.slice(2));
-        break;
-      
+        
       default:
-        console.error(`Unknown command: ${command}`);
-        displayHelp();
-        break;
+        // Single run (default)
+        console.log('🚀 Starting full dashboard run...\n');
+        await runDashboard();
+        console.log('\n✅ Dashboard run completed. Check ./data/ for output files.');
+        process.exit(0);
     }
+    
   } catch (error) {
-    console.error('Error executing command:', error);
+    logger.errorWithContext('Fatal error in dashboard execution', error);
+    console.error('\n❌ Dashboard execution failed:', error.message);
+    console.error('Check logs for detailed error information.');
+    process.exit(1);
   }
 }
 
-// Run the CLI
-executeCommand();
+/**
+ * Graceful shutdown handling
+ */
+function setupGracefulShutdown() {
+  const cleanup = (signal) => {
+    logger.info(`Received ${signal}. Performing graceful shutdown...`);
+    process.exit(0);
+  };
+  
+  process.on('SIGINT', () => cleanup('SIGINT'));
+  process.on('SIGTERM', () => cleanup('SIGTERM'));
+  
+  // Handle uncaught exceptions
+  process.on('uncaughtException', (error) => {
+    logger.errorWithContext('Uncaught Exception', error);
+    console.error('❌ Uncaught Exception:', error);
+    process.exit(1);
+  });
+  
+  process.on('unhandledRejection', (reason, promise) => {
+    logger.errorWithContext('Unhandled Rejection', new Error(reason), { promise });
+    console.error('❌ Unhandled Rejection:', reason);
+  });
+}
+
+// Setup and run
+if (require.main === module) {
+  setupGracefulShutdown();
+  main().catch(error => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });
+}
+
+// Export functions for use by other modules
+module.exports = {
+  runDashboard,
+  runContinuous,
+  displayInfo
+};
