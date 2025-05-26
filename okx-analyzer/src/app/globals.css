@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 15, 30;
+  --background-end-rgb: 5, 10, 20;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    )
+    fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 212, 191, 0.7);
+}
+
+/* Hide scrollbar while keeping functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Gradient text utility */
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent;
+}
+
+/* Glass card effect */
+.glass-card {
+  @apply bg-slate-800/60 backdrop-blur-lg border border-slate-700/50 rounded-xl;
+}
+
+/* Better glow effects */
+.glow-blue {
+  box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.3);
+}
+
+.glow-teal {
+  box-shadow: 0 0 15px 2px rgba(45, 212, 191, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.3);
+}
+
+/* Animation for gradient borders */
+@keyframes borderGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-border-gradient {
+  background-size: 300% 300%;
+  animation: borderGradientAnimation 5s ease infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Hover card effect */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom gradient backgrounds */
+.bg-mesh-1 {
+  background-image: 
+    radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(45, 212, 191, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+}
+
+.bg-mesh-2 {
+  background-image: 
+    radial-gradient(at 80% 80%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 20% 20%, rgba(45, 212, 191, 0.15) 0px, transparent 50%);
+}
+
+/* Tailwind extensions for gradients */
+@layer utilities {
+  .text-gradient-blue-teal {
+    @apply bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-purple-blue {
+    @apply bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .border-gradient {
+    border-image: linear-gradient(to right, #3b82f6, #2dd4bf) 1;
+  }
+}
+
+/* Responsive design helpers */
+@layer components {
+  .mobile-container {
+    @apply px-4 sm:px-6;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .responsive-grid-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+}
+
+/* Loading animations */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: rgba(45, 212, 191, 0.8) rgba(45, 212, 191, 0.8) transparent;
+  animation: loader-rotation 1s linear infinite;
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent rgba(59, 130, 246, 0.8) rgba(59, 130, 246, 0.8);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  animation: loader-rotation 0.5s linear infinite reverse;
+}
+
+@keyframes loader-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Token card price chart */
+.price-chart-positive path {
+  stroke: rgba(16, 185, 129, 0.8);
+}
+
+.price-chart-negative path {
+  stroke: rgba(239, 68, 68, 0.8);
+}
