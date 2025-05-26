@@ -70,22 +70,26 @@ export default function Analytics() {
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="mb-12 text-center"
         >
-          <h1 className="text-3xl font-bold text-white mb-2">Token Analytics</h1>
-          <p className="text-gray-400">Comprehensive analytics for OKX Chain tokens</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-4">
+            Market Analytics
+          </h1>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Dive deep into market trends, token performance, and trading patterns with our comprehensive analytics tools.
+          </p>
         </motion.div>
         
-        {/* Analytics Categories */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
           <motion.div
             variants={itemVariants}
@@ -95,27 +99,10 @@ export default function Analytics() {
             <div className="h-12 w-12 rounded-lg bg-blue-600/30 flex items-center justify-center mb-4">
               <BarChart3 className="h-6 w-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Market Overview</h3>
-            <p className="text-gray-300 mb-4">Get a comprehensive view of the OKX Chain market</p>
-            <button className="text-blue-400 font-medium flex items-center hover:text-blue-300 transition-colors">
-              View Market Overview
-              <ArrowRight className="ml-1 h-4 w-4" />
-            </button>
-          </motion.div>
-          
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="bg-gradient-to-br from-purple-900/50 to-purple-700/30 p-6 rounded-xl border border-purple-700/30 hover:border-purple-500/50 transition-all duration-300"
-          >
-            <div className="h-12 w-12 rounded-lg bg-purple-600/30 flex items-center justify-center mb-4">
-              <LineChart className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">Token Comparison</h3>
-            <p className="text-gray-300 mb-4">Compare multiple tokens side by side</p>
-            <button className="text-purple-400 font-medium flex items-center hover:text-purple-300 transition-colors">
-              Compare Tokens
-              <ArrowRight className="ml-1 h-4 w-4" />
+            <h3 className="text-xl font-bold text-white mb-2">Price Analysis</h3>
+            <p className="text-gray-300 mb-4">Track price movements and identify key support/resistance levels</p>
+            <button className="text-blue-400 hover:text-blue-300 transition-colors flex items-center text-sm">
+              Explore Price Charts <ArrowRight className="h-4 w-4 ml-1" />
             </button>
           </motion.div>
           
@@ -129,4 +116,39 @@ export default function Analytics() {
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Volume Analysis</h3>
             <p className="text-gray-300 mb-4">Analyze trading volume patterns and trends</p>
-            <button className="text-
+            <button className="text-teal-400 hover:text-teal-300 transition-colors flex items-center text-sm">
+              View Volume Metrics <ArrowRight className="h-4 w-4 ml-1" />
+            </button>
+          </motion.div>
+          
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            className="bg-gradient-to-br from-purple-900/50 to-purple-700/30 p-6 rounded-xl border border-purple-700/30 hover:border-purple-500/50 transition-all duration-300"
+          >
+            <div className="h-12 w-12 rounded-lg bg-purple-600/30 flex items-center justify-center mb-4">
+              <LineChart className="h-6 w-6 text-purple-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Trend Analysis</h3>
+            <p className="text-gray-300 mb-4">Identify emerging trends and market sentiment</p>
+            <button className="text-purple-400 hover:text-purple-300 transition-colors flex items-center text-sm">
+              Discover Trends <ArrowRight className="h-4 w-4 ml-1" />
+            </button>
+          </motion.div>
+        </motion.div>
+        
+        {/* Additional analytics sections would go here */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="text-center mt-16"
+        >
+          <p className="text-gray-500">
+            More analytics features coming soon. Stay tuned!
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

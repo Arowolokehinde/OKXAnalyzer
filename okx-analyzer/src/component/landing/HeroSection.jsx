@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import FloatingCoins from '../animations/FloatingCoins';
+import WalletConnectButton from '../wallet/WalletConnectButton';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,17 +76,18 @@ const HeroSection = () => {
             variants={itemVariants}
             className="mt-10 flex justify-center"
           >
-            <motion.button 
+            {/* <motion.button 
               whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(56, 189, 248, 0.5)" }}
               whileTap={{ scale: 0.98 }}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-500 rounded-lg text-white font-medium flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 relative overflow-hidden group"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-            >
-              <span className="relative z-10">Connect Wallet</span>
-              <ArrowRight className="w-5 h-5 relative z-10" />
-              <motion.div 
+            > */}
+              {/* <span className="relative z-10">Connect Wallet</span> */}
+              <WalletConnectButton />
+              {/* <ArrowRight className="w-5 h-5 relative z-10" /> */}
+              {/* <motion.div 
                 className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 animate={{ 
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -97,7 +99,7 @@ const HeroSection = () => {
                   ease: 'linear'
                 }}
               />
-            </motion.button>
+            </motion.button> */}
           </motion.div>
           
           {/* Scroll Indicator */}
