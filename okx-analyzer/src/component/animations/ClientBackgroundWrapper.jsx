@@ -1,20 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import AnimatedBackground from './AnimatedBackground';
+import { motion } from 'framer-motion';
 
 const ClientBackgroundWrapper = ({ children }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
-    <>
-      {isMounted && <AnimatedBackground variant="mixed" />}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-slate-950"
+    >
       {children}
-    </>
+    </motion.div>
   );
 };
 
